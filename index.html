@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Lake Site Portfolio — ALTi Assessment</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background-color: #2c2c2c;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+        }
+        .sites {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .site-card {
+            background-color: #2c2c2c;
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.2s;
+        }
+        .site-card:hover {
+            transform: translateY(-5px);
+        }
+        .site-card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+        .tier-badges {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .badge {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .badge-s { background-color: #28a745; }
+        .badge-a { background-color: #007bff; }
+        .badge-b { background-color: #ffc107; color: #1a1a1a;}
+        .badge-c { background-color: #dc3545; }
+        .ranking-table, .action-plan {
+            margin-top: 60px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        th {
+            background-color: #333;
+        }
+        .map-link {
+            color: #00aaff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Bear Lake Site Portfolio</h1>
+        <p>ALTi Assessment</p>
+    </div>
+    <div class="container">
+        <div class="sites">
+            <div class="site-card">
+                <h2>#12 Choczewo Plot 291</h2>
+                <div class="tier-badges">
+                    <span class="badge badge-a">Overall:A</span>
+                    <span class="badge badge-s">Power:S</span>
+                    <span class="badge badge-b">Fiber:B+</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>400kV substation 2027, 1.7GW offshore wind, nuclear 3,750MWe</p>
+                <a class="map-link" href="https://maps.app.goo.gl/kuDJ4ijReKY848Rm7" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#13 Choczewo Plot 109</h2>
+                <div class="tier-badges">
+                    <span class="badge badge-a">Overall:A</span>
+                    <span class="badge badge-s">Power:S</span>
+                    <span class="badge badge-b">Fiber:B+</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>Campus option</p>
+                <a class="map-link" href="https://maps.app.goo.gl/kuDJ4ijReKY848Rm7" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#14 Szczecin Kołbaskowo</h2>
+                <div class="tier-badges">
+                    <span class="badge badge-b">Overall:B+</span>
+                    <span class="badge badge-b">Power:B</span>
+                    <span class="badge badge-b">Fiber:B+</span>
+                    <span class="badge badge-a">Workforce:A</span>
+                </div>
+                <p>German border, A6/S3, Szczecin metro 400K+</p>
+                <a class="map-link" href="https://maps.app.goo.gl/YMVUBr1dtiyy1PKq7" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#15 Słupsk Grunwaldzka</h2>
+                <div class="tier-badges">
+                    <span class="badge badge-b">Overall:B</span>
+                    <span class="badge badge-b">Power:B</span>
+                    <span class="badge badge-c">Fiber:C</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>Submarine cable landing ~20km</p>
+                <a class="map-link" href="https://maps.app.goo.gl/mRLZoY1qDSJoxeZq9" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#16 Słupsk Redzikowo</h2>
+                 <div class="tier-badges">
+                    <span class="badge badge-c">Overall:C</span>
+                    <span class="badge badge-c">Power:C</span>
+                    <span class="badge badge-c">Fiber:C</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>⚠️ Adjacent US Navy Aegis Ashore</p>
+                <a class="map-link" href="https://maps.app.goo.gl/NZEpEQiDbMEWYnVc6" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#17 Wrocław Miękinia ★TOP</h2>
+                 <div class="tier-badges">
+                    <span class="badge badge-a">Overall:A</span>
+                    <span class="badge badge-b">Power:B+</span>
+                    <span class="badge badge-a">Fiber:A</span>
+                    <span class="badge badge-s">Workforce:S</span>
+                </div>
+                <p>Ex-Intel 400ha LSSE, fully serviced, WRIX+Thinx <25km</p>
+                 <a class="map-link" href="https://maps.app.goo.gl/pLXVUvp43AxFysyk7" target="_blank">View on Google Maps</a>
+            </div>
+             <div class="site-card">
+                <h2>#18 Wałbrzych</h2>
+                 <div class="tier-badges">
+                    <span class="badge badge-b">Overall:B</span>
+                    <span class="badge badge-c">Power:C</span>
+                    <span class="badge badge-b">Fiber:B</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>WSEZ 2,212ha, declining city</p>
+                 <a class="map-link" href="https://maps.app.goo.gl/km1QnNAUFcEbuttu5" target="_blank">View on Google Maps</a>
+            </div>
+            <div class="site-card">
+                <h2>#19 Konin ★SLEEPER</h2>
+                 <div class="tier-badges">
+                    <span class="badge badge-a">Overall:A</span>
+                    <span class="badge badge-s">Power:S</span>
+                    <span class="badge badge-b">Fiber:B</span>
+                    <span class="badge badge-c">Workforce:C</span>
+                </div>
+                <p>ZE PAK power complex, 220/110kV substation, nuclear candidate</p>
+                <a class="map-link" href="https://maps.app.goo.gl/K44DxfTop7CfgNky8" target="_blank">View on Google Maps</a>
+            </div>
+        </div>
+
+        <div class="ranking-table">
+            <h2>Power Stack Rank</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Site Name</th>
+                        <th>Potential MW</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>#12 Choczewo Plot 291</td><td>200-500+MW</td></tr>
+                    <tr><td>#19 Konin ★SLEEPER</td><td>200-500+MW</td></tr>
+                    <tr><td>#17 Wrocław Miękinia ★TOP</td><td>100-200+MW</td></tr>
+                    <tr><td>#14 Szczecin Kołbaskowo</td><td>50-100MW</td></tr>
+                    <tr><td>#15 Słupsk Grunwaldzka</td><td>30-80MW</td></tr>
+                    <tr><td>#18 Wałbrzych</td><td>30-80MW</td></tr>
+                    <tr><td>#16 Słupsk Redzikowo</td><td>20-50MW</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action-plan">
+            <h2>Action Plan</h2>
+             <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Action</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>[Action 1]</td><td>High</td></tr>
+                    <tr><td>2</td><td>[Action 2]</td><td>High</td></tr>
+                    <tr><td>3</td><td>[Action 3]</td><td>Medium</td></tr>
+                    <tr><td>4</td><td>[Action 4]</td><td>Low</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
