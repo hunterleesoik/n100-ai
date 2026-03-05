@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALTi Global — Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080b12;--bg-card:#0d1019;--bg-card-h:#121722;--border:#171d2c;--border-h:#1f2840;--text:#d8dce6;--text-2:#7a839c;--text-3:#454d63;--gold:#5b8ec9;--gold-dim:#5b8ec915;--blue:#5b8ec9;--blue-dim:#5b8ec912;--green:#4ead7a;--green-dim:#4ead7a12;--amber:#d4a853;--red:#cf5f5f;--purple:#7b6ec9;--cyan:#5ba8c9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(180deg,#080c14 0%,#060910 30%,#080b12 100%);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+::selection{background:#3a7bd540;color:#fff}
+a{color:var(--blue);text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+section{padding:80px 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+h1,h2,h3,.display{font-family:'Playfair Display',serif;font-weight:400}
+.mono{font-family:'JetBrains Mono',monospace}
+.src{font-size:10px;color:var(--text-3);font-style:italic;margin-top:2px;display:block}
+.src-inline{font-size:10px;color:var(--text-3);font-style:italic}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(ellipse,#1a2a4520 0%,#0d152008 40%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--bg),transparent);pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:800px;padding:40px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:transparent;border:none;border-radius:0;padding:0;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-3);margin-bottom:32px;animation:fadeIn .8s ease}
+.hero-badge .dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2.5s infinite;opacity:.7}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #5b8ec950}50%{box-shadow:0 0 0 8px #5b8ec900}}
+.hero h1{font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:24px;animation:fadeUp .8s ease .1s both;font-weight:400;letter-spacing:-1px}
+.hero h1 .accent{color:var(--blue);font-style:italic}
+.hero .sub{font-size:18px;color:var(--text-2);font-weight:300;max-width:620px;margin:0 auto 28px;animation:fadeUp .8s ease .2s both}
+.hero .specs{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;animation:fadeUp .8s ease .3s both}
+.hero .spec{text-align:center}
+.hero .spec-val{font-family:'JetBrains Mono',monospace;font-size:26px;color:var(--text);font-weight:400}
+.hero .spec-lbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-top:2px}
+.hero .meta{font-size:12px;color:var(--text-3);letter-spacing:1px;animation:fadeUp .8s ease .4s both}
+.hero .entities{font-size:14px;color:var(--text-2);margin-bottom:8px;animation:fadeUp .8s ease .35s both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Nav */
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(6,8,12,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 40px;overflow-x:auto}
+.sticky-nav-inner{max-width:1200px;margin:0 auto;display:flex;gap:4px;padding:8px 0}
+.nav-link{padding:8px 16px;font-size:12px;letter-spacing:.5px;color:var(--text-3);border-radius:6px;white-space:nowrap;transition:all .2s;cursor:pointer;border:none;background:none;font-family:'Outfit',sans-serif}
+.nav-link:hover{color:var(--text-2);background:#ffffff08}
+.nav-link.active{color:var(--blue);background:var(--blue-dim)}
+
+/* Section headers */
+.s-head{margin-bottom:40px}
+.s-num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--text-3);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--border)}
+.s-title{font-size:clamp(28px,3.5vw,40px);line-height:1.15;font-style:italic}
+.s-sub{font-size:15px;color:var(--text-2);margin-top:8px;max-width:700px}
+.ss-title{font-family:'Playfair Display',serif;font-size:22px;margin:40px 0 16px;color:var(--text);display:flex;align-items:center;gap:10px;font-style:italic}
+.ss-title .icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.content{font-size:15px;color:var(--text-2);line-height:1.8;max-width:900px}
+.content+.content{margin-top:16px}
+.content strong{color:var(--text);font-weight:600}
+
+/* Cards & metrics */
+.cards{display:grid;gap:16px;margin-top:24px}
+.cards-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.cards-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .3s,transform .2s}
+.card:hover{border-color:var(--border-h);transform:translateY(-2px)}
+.card-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:6px}
+.card-value{font-family:'Playfair Display',serif;font-size:28px;line-height:1.1;margin-bottom:4px;font-style:italic}
+.card-desc{font-size:13px;color:var(--text-2)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:24px}
+.metric{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:border-color .3s}
+.metric:hover{border-color:var(--border-h)}
+.metric-val{font-family:'JetBrains Mono',monospace;font-size:24px;line-height:1.1;margin-bottom:6px;font-weight:500}
+.metric-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3)}
+
+/* Tables */
+.tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);background:var(--bg-card);margin-top:24px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{position:sticky;top:0;z-index:5}
+th{background:#070a11;padding:13px 16px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:600;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:13px 16px;border-bottom:1px solid #0f1420;color:var(--text-2);vertical-align:top}
+tr:hover td{background:var(--bg-card-h);color:var(--text)}
+tr:last-child td{border-bottom:none}
+td.name{color:var(--text);font-weight:500}
+td.bold{color:var(--text);font-weight:600}
+th.r,td.r{text-align:right}
+th.c,td.c{text-align:center}
+tr.highlight td{background:#1a365d20;border-bottom-color:#1a365d30}
+tr.total td{background:#1a365d30;font-weight:600;color:var(--text)}
+tr.alti td{background:#5b8ec910;border-bottom-color:#5b8ec918}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:500;white-space:nowrap}
+.badge-blue-accent{background:var(--blue-dim);color:var(--blue);border:1px solid #5b8ec920}
+.badge-green{background:var(--green-dim);color:var(--green);border:1px solid #22c55e25}
+.badge-blue{background:var(--blue-dim);color:var(--blue);border:1px solid #3a7bd525}
+.badge-amber{background:#f59e0b15;color:var(--amber);border:1px solid #f59e0b25}
+.badge-gray{background:#ffffff08;color:var(--text-3);border:1px solid var(--border)}
+.badge-blue-accent{background:var(--blue-dim);color:var(--blue);border:1px solid #5b8ec920}
+
+/* Lists */
+.blist{list-style:none;padding:0;margin:16px 0}
+.blist li{padding:8px 0 8px 24px;position:relative;font-size:14px;color:var(--text-2);line-height:1.7}
+.blist li::before{content:'';position:absolute;left:0;top:16px;width:6px;height:6px;border-radius:50%;background:var(--blue);opacity:.5}
+.blist li strong{color:var(--text);font-weight:600}
+
+/* Layouts */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px}
+@media(max-width:768px){.two-col{grid-template-columns:1fr}.cards-3,.cards-2{grid-template-columns:1fr}}
+
+/* Callout */
+.callout{background:linear-gradient(135deg,#0c101a,#090d14);border:1px solid var(--border);border-radius:14px;padding:32px;margin-top:32px}
+.callout-title{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-style:italic}
+
+/* Blurred text */
+.blurred{filter:blur(5px);user-select:none;transition:filter .3s;color:var(--text-2)}
+.blurred:hover{filter:blur(3px)}
+
+/* Investor cards */
+.inv-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;border-left:2px solid var(--border);transition:all .3s}
+.inv-card:hover{border-color:var(--border-h);transform:translateY(-2px)}
+.inv-name{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:2px;font-style:italic}
+.inv-type{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);margin-bottom:10px}
+.inv-detail{font-size:13px;color:var(--text-2);line-height:1.6}
+.inv-detail strong{color:var(--text)}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:4px;width:fit-content}
+.tab-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-3);cursor:pointer;transition:all .2s;border:none;background:none;font-family:'Outfit',sans-serif}
+.tab-btn:hover{color:var(--text-2)}
+.tab-btn.active{background:#1a2035;color:var(--text)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* Footer */
+.footer{text-align:center;padding:60px 40px 30px;color:var(--text-3);font-size:12px}
+.footer .brand{font-family:'Playfair Display',serif;font-size:20px;color:var(--text-2);margin-bottom:4px;font-style:italic}
+.conf{background:transparent;border:1px solid var(--border);border-radius:8px;padding:12px 20px;text-align:center;font-size:11px;color:var(--text-3);letter-spacing:2px;margin:40px 0;text-transform:uppercase}
+
+/* Romania link */
+.romania-link{display:block;margin:40px 0;padding:24px 32px;background:linear-gradient(135deg,#0c1220,#111824);border:1px solid var(--border);border-left:2px solid var(--blue);border-radius:12px;text-decoration:none;transition:all .3s}
+.romania-link:hover{border-color:var(--border-h);transform:translateY(-2px)}
+.romania-link .rl-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);margin-bottom:4px;font-style:italic}
+.romania-link .rl-desc{font-size:13px;color:var(--text-2)}
+.romania-link .rl-badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+
+
+/* SWF Logos */
+.inv-logo { width:36px; height:36px; border-radius:8px; object-fit:contain; background:var(--bg-card-h); padding:4px; margin-bottom:10px; display:block }
+.inv-logo-fallback { width:36px; height:36px; border-radius:8px; background:var(--bg-card-h); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--text-3); margin-bottom:10px; border:1px solid var(--border) }
+
+/* Flag + AUM in card */
+.inv-card { position:relative }
+.inv-flag { position:absolute; top:16px; right:16px; font-size:24px; line-height:1; opacity:.8 }
+.inv-aum { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); font-style:normal; margin-left:8px; font-weight:400 }
+
+/* Language Toggle */
+.lang-toggle { display:flex; align-items:center; gap:2px; background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:3px; margin-left:auto; flex-shrink:0 }
+.lang-btn { padding:5px 12px; border-radius:6px; font-size:11px; font-weight:600; letter-spacing:.5px; color:var(--text-3); cursor:pointer; transition:all .2s; border:none; background:none; font-family:'JetBrains Mono',monospace }
+.lang-btn:hover { color:var(--text-2) }
+.lang-btn.active { background:var(--blue-dim); color:var(--blue) }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-badge"><span class="dot"></span> Confidential — March 2026</div>
+<h1>ALTi <span class="accent">Global</span></h1>
+<p class="sub">Sovereign-scale, purpose-built AI GPU data center infrastructure across Central & Eastern Europe.</p>
+<div class="specs">
+<div class="spec"><div class="spec-val">560 MW</div><div class="spec-lbl">Phase 1 + Phase 2</div></div>
+<div class="spec"><div class="spec-val">147,456</div><div class="spec-lbl">Vera Rubin GPUs</div></div>
+<div class="spec"><div class="spec-val">2,048</div><div class="spec-lbl">NVL144 Racks</div></div>
+<div class="spec"><div class="spec-val">$4.3B</div><div class="spec-lbl">Revenue at Scale</div></div>
+<div class="spec"><div class="spec-val">5 GW</div><div class="spec-lbl">CEE Pipeline</div></div>
+</div>
+<div class="entities">ALT Infrastructure SA, Zurich · AGC Poland</div>
+<div class="meta mono">EXECUTIVE SUMMARY — STARGARD, POLAND</div>
+</div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav"><div class="sticky-nav-inner">
+<button class="nav-link active" onclick="scrollTo_s('thesis')">Thesis</button>
+<button class="nav-link" onclick="scrollTo_s('market')">Market</button>
+<button class="nav-link" onclick="scrollTo_s('asset')">The Asset</button>
+<button class="nav-link" onclick="scrollTo_s('site')">Site & CEE</button>
+<button class="nav-link" onclick="scrollTo_s('power')">Power</button>
+<button class="nav-link" onclick="scrollTo_s('revenue')">Revenue</button>
+<button class="nav-link" onclick="scrollTo_s('structure')">Structure</button>
+<button class="nav-link" onclick="scrollTo_s('financial')">Financial</button>
+<button class="nav-link" onclick="scrollTo_s('team')">Team</button>
+<button class="nav-link" onclick="scrollTo_s('risk')">Risk</button>
+<button class="nav-link" onclick="scrollTo_s('roadmap')">Roadmap</button>
+<button class="nav-link" onclick="scrollTo_s('investors')">Investors</button>
+<button class="nav-link" onclick="scrollTo_s('dataroom')">Data Room</button>
+<div class="lang-toggle"><button class="lang-btn active" onclick="setLang('en')">EN</button><button class="lang-btn" onclick="setLang('pl')">PL</button></div>
+</div></nav>
+
+<div class="wrap">
+
+<!-- 1. THESIS -->
+<section id="thesis">
+<div class="s-head reveal"><div class="s-num">01 — Investment Thesis</div><div class="s-title">The Opportunity</div></div>
+<div class="content reveal">While the world's hyperscalers race to spend <strong>$600B+ in 2026</strong> chasing AI compute capacity they cannot build fast enough, ALTi Global is constructing what they need: sovereign-scale, purpose-built GPU infrastructure that <strong>90% of the world's existing data centers physically cannot deliver</strong>. This is not a bet on AI. This is the infrastructure beneath the bet — the power, the cooling, the racks, the chips — at the exact moment when demand has outstripped supply by the widest margin in the history of computing.</div>
+<div class="content reveal">The buildout is staged across two phases. <strong>Phase 1</strong> delivers 140 MW and 36,864 NVIDIA Vera Rubin NVL144 GPUs in Stargard, Poland — operational Q1 2027, generating <strong>$712M in Year 1 revenue</strong> at 70% utilization. <strong>Phase 2</strong> triples the footprint: three additional 140 MW facilities (420 MW) begin construction Q2 2027 on confirmed expansion land, adding 110,592 GPUs and driving combined platform revenue to <strong>$4.3B annually at steady state</strong>. The 5 GW CEE pipeline (2 GW Poland, 2 GW Romania, 1 GW Bulgaria) extends the platform far beyond these initial phases.</div>
+<div class="content reveal">Three structural advantages make this possible: <strong>purpose-built Vera Rubin NVL144 architecture</strong> that competitors cannot retrofit for — each rack draws ~264 kW, requires direct-to-chip liquid cooling, and operates as a unified AI supercomputer delivering 3.6 EFLOPS; <strong>40–60% cost advantage</strong> through Poland's Special Economic Zone, labor arbitrage, and competitive energy at ~130 USD/MWh; and <strong>full vertical integration</strong> via four strategic acquisitions controlling MEP engineering, architecture, energy generation, and cooling — compressing the build timeline to under 12 months versus the 18–30 month industry standard.
+<span class="src">Sources: <a href="https://know.creditsights.com/insights/technology-hyperscaler-capex-2026-estimates/" target="_blank">CreditSights Hyperscaler Capex (Nov 2025)</a>; <a href="https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer" target="_blank">NVIDIA CES 2026 (Jan 2026)</a>; ALTi Global financial model</span></div>
+
+<div class="ss-title reveal" style="margin-top:32px">Phase 1 — 140 MW, Stargard</div>
+<div class="metrics reveal">
+<div class="metric"><div class="metric-val" style="color:var(--blue)">140 MW</div><div class="metric-lbl">Power</div></div>
+<div class="metric"><div class="metric-val">36,864</div><div class="metric-lbl">GPUs</div></div>
+<div class="metric"><div class="metric-val">512</div><div class="metric-lbl">NVL144 Racks</div></div>
+<div class="metric"><div class="metric-val">$712M</div><div class="metric-lbl">Year 1 Revenue</div></div>
+<div class="metric"><div class="metric-val">$1.01B</div><div class="metric-lbl">Yr 3 Revenue</div></div>
+<div class="metric"><div class="metric-val">$4.27B</div><div class="metric-lbl">Investment</div></div>
+</div>
+<div class="ss-title reveal">Phase 2 — 3 × 140 MW Expansion (Q2 2027 Start)</div>
+<div class="metrics reveal">
+<div class="metric"><div class="metric-val" style="color:var(--green)">420 MW</div><div class="metric-lbl">Additional Power</div></div>
+<div class="metric"><div class="metric-val">110,592</div><div class="metric-lbl">Additional GPUs</div></div>
+<div class="metric"><div class="metric-val">1,536</div><div class="metric-lbl">Additional Racks</div></div>
+<div class="metric"><div class="metric-val">~$3.18B</div><div class="metric-lbl">Yr 4 Revenue (P2)</div></div>
+<div class="metric"><div class="metric-val">~$12.8B</div><div class="metric-lbl">Investment (P2)</div></div>
+<div class="metric"><div class="metric-val">&lt;12 mo</div><div class="metric-lbl">Each Build</div></div>
+</div>
+<div class="ss-title reveal">Combined Platform — Phase 1 + Phase 2</div>
+<div class="metrics reveal">
+<div class="metric"><div class="metric-val" style="color:var(--gold)">560 MW</div><div class="metric-lbl">Total Power</div></div>
+<div class="metric"><div class="metric-val">147,456</div><div class="metric-lbl">Total GPUs</div></div>
+<div class="metric"><div class="metric-val">2,048</div><div class="metric-lbl">Total Racks</div></div>
+<div class="metric"><div class="metric-val">$4.29B</div><div class="metric-lbl">Steady-State Rev</div></div>
+<div class="metric"><div class="metric-val">~$3.05B</div><div class="metric-lbl">Steady EBITDA</div></div>
+<div class="metric"><div class="metric-val">~$17.1B</div><div class="metric-lbl">Total Investment</div></div>
+<div class="metric"><div class="metric-val">28.3%</div><div class="metric-lbl">IRR (P1 Model)</div></div>
+<div class="metric"><div class="metric-val">12.2×</div><div class="metric-lbl">Equity MOIC (P1)</div></div>
+<div class="metric"><div class="metric-val">5 GW</div><div class="metric-lbl">CEE Pipeline</div></div>
+</div>
+
+<div class="callout reveal" style="margin-top:24px">
+<div class="callout-title">How Phase 2 Works</div>
+<div class="content">Phase 2 construction begins Q2 2027 — immediately after Phase 1 goes live — leveraging the same vertically integrated construction platform, the same NVIDIA NVL144 supply relationship, and the same Stargard Industrial Park expansion land (70+ hectares identified). Each of the three 140 MW builds replicates the Phase 1 template: identical rack configuration (512 NVL144 racks), identical power density (~264 kW/rack), identical CAPEX profile (~$4.27B per facility). The replicability is the point — vertical integration means ALTi Global doesn't re-procure contractors, re-negotiate power, or re-engineer cooling for each build. The template is proven, the land is available, the power consortium agreement covers up to 500 MW, and the construction team is in-house. Phase 2 facilities ramp to 90% utilization within 24 months of go-live, mirroring the Phase 1 70% → 80% → 90% trajectory validated in the financial model.</div>
+</div>
+<span class="src" style="margin-top:12px;display:block">Source: ALTi Global three-statement financial model (Vera Rubin variant, Q1 2026). Phase 1: WACC 8%, 6% cost of debt, 10× exit multiple, 70%→80%→90% utilization. Phase 2 projections scaled from validated Phase 1 model with 1-year construction lag.</span>
+</section>
+
+<!-- 2. MARKET -->
+<section id="market">
+<div class="s-head reveal"><div class="s-num">02 — Market Context</div><div class="s-title">Demand Drivers & Structural Advantage</div></div>
+<div class="two-col">
+<div class="reveal">
+<div class="ss-title"><span class="icon" style="background:var(--blue-dim);color:var(--blue)">⚡</span> Compute Supply-Demand Gap</div>
+<div class="content">Hyperscaler capex is projected to exceed <strong>$600B in 2026</strong>, a 36% increase over 2025, with ~75% ($450B) tied directly to AI infrastructure. Goldman Sachs projects <strong>$1.15 trillion</strong> in cumulative hyperscaler capex from 2025–2027. Global data center infrastructure spending reached $290B in 2024 and is projected to surpass <strong>$1 trillion annually by 2030</strong>.
+<span class="src">Sources: CreditSights (Nov 2025); Goldman Sachs Research (Dec 2025); IoT Analytics DC Equipment Report (Nov 2025); Futurum Group (Feb 2026)</span></div>
+</div>
+<div class="reveal">
+<div class="ss-title"><span class="icon" style="background:var(--gold-dim);color:var(--gold)">🇪🇺</span> European Capacity Deficit</div>
+<div class="content">Europe is structurally underbuilt versus North America and APAC. The EU AI Act creates demand for <strong>sovereign compute</strong>. Poland is the cost-competitive EU entry point — EU membership, NATO membership, and significantly lower costs than Western alternatives. As of late 2025, Synergy Research counted <strong>1,297 operational hyperscale data centers</strong> worldwide with 770 in pipeline.
+<span class="src">Sources: Synergy Research Group (Q4 2025); Data Center Knowledge (Mar 2026)</span></div>
+</div>
+</div>
+
+<div class="callout reveal">
+<div class="callout-title">🧱 The Retrofit Wall — ALTi Global's Core Insight</div>
+<div class="content"><strong>~90% of existing data centers cannot be retrofitted</strong> for Vera Rubin NVL144. Each rack is a unified AI supercomputer delivering 3.6 EFLOPS of NVFP4 inference with 72 Rubin GPUs and 72 Vera CPUs — requiring ~264 kW/rack, direct-to-chip liquid cooling, and NVLink 6 at 3.6 TB/s per GPU. Competitors built for H100/Blackwell face 12–18 month rebuilds. Microsoft has publicly abandoned sites that can't accommodate next-gen architectures. <strong>NVIDIA's development leadership has independently validated ALTi Global's strategy, architecture, and implementation plan.</strong>
+<span class="src">Sources: NVIDIA CES 2026 Keynote (Jan 6, 2026); StorageReview Vera Rubin NVL72 Deep Dive (Jan 7, 2026); Tom's Hardware (Jan 5, 2026); Microsoft Fairwater disclosure (Q4 2025)</span></div>
+</div>
+
+<div class="callout reveal" style="margin-top:16px;border-left:3px solid var(--green)">
+<div class="callout-title" style="color:var(--green)">◆ Vera Rubin NVL144 — Generational Leap</div>
+<div class="content">Launched CES 2026, in full production Q1 2026. <strong>5× inference performance</strong> and <strong>10× lower cost per token</strong> versus Blackwell. 1/4 the GPUs for MoE training. 288 GB HBM4 per GPU at 22 TB/s. 260 TB/s rack-level NVLink 6. Cable-free modular tray design = 18× faster assembly. TSMC 3nm, 336B transistors. Partner availability H2 2026.
+<span class="src">Sources: NVIDIA Newsroom (Jan 6, 2026); VideoCardz NVL72 Specs (Jan 6, 2026); Supermicro PR (Jan 5, 2026); NVIDIA Technical Blog (Feb 2026)</span></div>
+</div>
+</section>
+
+<!-- 3. ASSET -->
+<section id="asset">
+<div class="s-head reveal"><div class="s-num">03 — The Asset</div><div class="s-title">Phase 1 Facility — Stargard, Poland (140 MW)</div><div class="s-sub">Phase 1 of a 560 MW platform. Three additional identical 140 MW facilities (Phase 2) begin construction Q2 2027 on the same campus.</div></div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Specification</th><th>Detail</th></tr></thead>
+<tbody>
+<tr><td class="name">Total Power Capacity</td><td>140 MW (signed commitment from consortium)</td></tr>
+<tr><td class="name">GPU Architecture</td><td>NVIDIA Vera Rubin NVL144 (72 Rubin GPUs + 72 Vera CPUs per rack)</td></tr>
+<tr><td class="name">Rack Count</td><td>512 NVL144 rack-scale AI supercomputers</td></tr>
+<tr><td class="name">Power per Rack</td><td>~264 kW (next-gen liquid-cooled spec)</td></tr>
+<tr><td class="name">Total GPU Count</td><td>36,864 Rubin GPUs</td></tr>
+<tr><td class="name">Rack Performance</td><td>3.6 EFLOPS inference / 2.5 EFLOPS training per rack</td></tr>
+<tr><td class="name">GPU Price per Rack</td><td>~$6.0M per NVL144 rack (after 20% volume discount)</td></tr>
+<tr><td class="name">Cooling</td><td>Direct-to-chip liquid cooling, PUE ≤ 1.25</td></tr>
+<tr><td class="name">Design Standard</td><td>Tier III Uptime Institute, N+1 redundancy</td></tr>
+<tr><td class="name">Networking</td><td>NVIDIA Quantum-X800 InfiniBand / Spectrum-X Ethernet (NVLink 6)</td></tr>
+<tr><td class="name">Software</td><td>NVIDIA Essentials + Mission Control cluster management</td></tr>
+<tr><td class="name">Data Halls</td><td>8 purpose-built, ultra-high-density AI halls per facility</td></tr>
+<tr><td class="name">Storage</td><td>BeeGFS high-IOPS, multi-tenant parallel file system</td></tr>
+<tr><td class="name">Resiliency</td><td>Tier III Uptime Institute design standard, N+1 redundancy</td></tr>
+<tr><td class="name">Compliance</td><td>ISO 27001 ready; EU data sovereignty compliant</td></tr>
+</tbody></table></div>
+<span class="src" style="margin-top:8px;display:block">Sources: ALTi Global financial model; NVIDIA Vera Rubin NVL144 specs (CES 2026); Barron's NVIDIA server pricing (Q4 2025); Wolfe Research NVIDIA price target (Q4 2025)</span>
+
+<div class="ss-title reveal">CAPEX Breakdown — $538.4M Validated</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Work Package</th><th class="r">Cost (USD)</th></tr></thead>
+<tbody>
+<tr><td>Design & Engineering</td><td class="r mono">$6.6M</td></tr>
+<tr><td>Building Shell & Structure</td><td class="r mono">$60.9M</td></tr>
+<tr><td>Technical Infrastructure</td><td class="r mono">$9.1M</td></tr>
+<tr><td>Critical Infrastructure (Power, Cooling, UPS)</td><td class="r mono">$375.4M</td></tr>
+<tr><td>Office Facilities & Operations Center</td><td class="r mono">$16.5M</td></tr>
+<tr><td>External Works</td><td class="r mono">$51.6M</td></tr>
+<tr><td>Construction Management & Commissioning</td><td class="r mono">$18.2M</td></tr>
+<tr class="total"><td>Total Facility CAPEX</td><td class="r mono">$538.4M</td></tr>
+</tbody></table></div>
+<div class="content reveal" style="margin-top:12px;font-size:13px;color:var(--text-3)">Phase 1 CAPEX excludes GPU procurement ($3.072B for 512 NVL144 racks at $6.0M each, 20% volume discount). Total Phase 1: ~$4.27B. Phase 2 replicates this template 3×, for ~$12.81B additional. Total platform investment: ~$17.1B across 2026–2029. <span class="src-inline">Source: ALTi Global financial model; EPC contractor validated proposal</span></div>
+
+<div class="ss-title reveal">Construction Timeline — Phase 1 (140 MW)</div>
+<div class="cards cards-3 reveal">
+<div class="card" style="border-top:3px solid var(--blue)"><div class="card-label">Stage 1 · Through Q1 2026</div><div class="card-value" style="font-size:20px">Pre-Construction</div><div class="card-desc">Site acquisition, permitting, GPU ordering, power agreements finalized</div></div>
+<div class="card" style="border-top:3px solid var(--gold)"><div class="card-label">Stage 2 · Q2–Q4 2026</div><div class="card-value" style="font-size:20px">Facility Build</div><div class="card-desc">Shell construction, HVAC, power infrastructure, BESS integration</div></div>
+<div class="card" style="border-top:3px solid var(--green)"><div class="card-label">Stage 3 · Q1–Q2 2027</div><div class="card-value" style="font-size:20px">Internal Fit-Out</div><div class="card-desc">NVL144 assembly, NVIDIA Mission Control config, burn-in, go-live</div></div>
+</div>
+
+<div class="ss-title reveal">Construction Timeline — Phase 2 (3 × 140 MW)</div>
+<div class="cards cards-3 reveal">
+<div class="card" style="border-top:3px solid var(--purple)"><div class="card-label">Stage 4 · Q2 2027</div><div class="card-value" style="font-size:20px">Phase 2 Groundbreak</div><div class="card-desc">Three simultaneous 140 MW builds begin on Stargard expansion land. Leverages same vertically integrated construction team, same power consortium (500 MW pathway), same NVIDIA NVL144 supply chain.</div></div>
+<div class="card" style="border-top:3px solid var(--purple)"><div class="card-label">Stage 5 · Q3 2027–Q1 2028</div><div class="card-value" style="font-size:20px">Parallel Build</div><div class="card-desc">Shell, MEP, power, and cooling across all three facilities. Replicable template eliminates re-engineering. In-house MEP, architecture, and cooling teams deploy proven Phase 1 design at 3× scale.</div></div>
+<div class="card" style="border-top:3px solid var(--green)"><div class="card-label">Stage 6 · Q2 2028</div><div class="card-value" style="font-size:20px">Phase 2 Go-Live</div><div class="card-desc">1,536 NVL144 racks installed across three facilities. Burn-in, Mission Control config, customer onboarding. First Phase 2 revenue: $2.136B (Year 1, 70% utilization).</div></div>
+</div>
+</section>
+
+<!-- 4. SITE & CEE -->
+<section id="site">
+<div class="s-head reveal"><div class="s-num">04 — Site & Expansion</div><div class="s-title">CEE Strategic Ranking — 5 GW Pipeline</div><div class="s-sub">Multi-country platform assessed across power, EU membership, SEZ incentives, connectivity, labor, stability, land, and climate.</div></div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th class="c">Tier</th><th>Country</th><th class="c">Capacity</th><th>Status</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr class="highlight"><td class="c bold" style="color:var(--green)">S</td><td class="name">Poland</td><td class="c mono">2 GW</td><td><span class="badge badge-green">Going Live</span></td><td>Phase 1 under construction. 140 MW confirmed, 500 MW pathway. SEZ incentives, NVIDIA-validated.</td></tr>
+<tr><td class="c bold" style="color:var(--blue)">A</td><td class="name">Romania</td><td class="c mono">2 GW</td><td><span class="badge badge-blue">In Planning</span></td><td>Capacity identified near Bucharest. EU member, growing tech sector, strong grid.</td></tr>
+<tr><td class="c bold" style="color:var(--blue)">A</td><td class="name">Bulgaria</td><td class="c mono">1 GW</td><td><span class="badge badge-blue">In Planning</span></td><td>90 hectares, power being secured. Priority Phase 2 candidate. Competitive energy, EU.</td></tr>
+<tr><td class="c bold">B+</td><td class="name">Czech Republic</td><td class="c">—</td><td><span class="badge badge-gray">Up Next</span></td><td>Strong infrastructure, EU, established industrial base. Higher labor but developed grid.</td></tr>
+<tr><td class="c bold">B+</td><td class="name">Estonia</td><td class="c">—</td><td><span class="badge badge-gray">Up Next</span></td><td>Digital governance leader, NATO Cyber Center. Strategic for sovereign compute.</td></tr>
+<tr><td class="c bold">B</td><td class="name">Hungary</td><td class="c">—</td><td><span class="badge badge-gray">Up Next</span></td><td>Competitive energy, central EU location. Industrial zone framework similar to Polish SEZ.</td></tr>
+<tr><td class="c bold">B</td><td class="name">Lithuania</td><td class="c">—</td><td><span class="badge badge-gray">Up Next</span></td><td>Growing tech ecosystem, Baltic fiber hub. EU/NATO, renewable potential.</td></tr>
+<tr><td class="c">B–</td><td>Latvia / Slovakia</td><td class="c">—</td><td><span class="badge badge-gray">Evaluate</span></td><td>EU/NATO, developing DC markets. Smaller grid but competitive costs.</td></tr>
+<tr><td class="c" style="color:var(--amber)">C</td><td>Croatia / Slovenia</td><td class="c">—</td><td><span class="badge badge-gray">Evaluate</span></td><td>EU members. Limited DC infrastructure but growing demand.</td></tr>
+<tr><td class="c" style="color:var(--text-3)">D</td><td style="color:var(--text-3)">Serbia, BiH, Others</td><td class="c">—</td><td><span class="badge badge-gray">Monitor</span></td><td>Non-EU. Regulatory gaps. Long-term monitoring only.</td></tr>
+<tr class="total"><td class="c"></td><td>Total Pipeline</td><td class="c mono">5 GW</td><td></td><td>Poland (2 GW) + Romania (2 GW) + Bulgaria (1 GW)</td></tr>
+</tbody></table></div>
+
+
+</section>
+
+<!-- 5. POWER -->
+<section id="power">
+<div class="s-head reveal"><div class="s-num">05 — Power & Energy</div><div class="s-title">Phase 1: 140 MW · Phase 2: 420 MW · Pathway to 500 MW+</div></div>
+<div class="cards cards-3 reveal">
+<div class="card" style="border-top:2px solid var(--blue)"><div class="card-label">Phase 1</div><div class="card-value" style="color:var(--green)">140 MW</div><div class="card-desc">Signed commitment · Q1 2027 go-live</div></div>
+<div class="card" style="border-top:2px solid var(--green)"><div class="card-label">Phase 2 (3× builds)</div><div class="card-value" style="color:var(--green)">420 MW</div><div class="card-desc">Within 500 MW consortium pathway · Q2 2027 start</div></div>
+<div class="card"><div class="card-label">National Grid</div><div class="card-value">1 GW</div><div class="card-desc">PSE application pending · CEE expansion</div></div>
+</div>
+<div class="content reveal" style="margin-top:24px">Energy cost modeled at ~500 PLN/MWh (average Polish commercial rate), with nominal 112 MW usage and 90 MW real load. Vertical integration extends to energy generation through acquisition of renewable assets (behind-the-meter capacity). International, world-class <strong>Battery Energy Storage Systems</strong> provide peak load handling and grid stabilization. Poland's 2023 Energy Law amendment enables behind-the-meter generation.
+<span class="src">Sources: ALTi Global financial model; gramwzielone.pl, TGE, Axpo Poland energy pricing (Q1 2025); Polish Energy Law 2023 amendment</span></div>
+</section>
+
+<!-- 6. REVENUE -->
+<section id="revenue">
+<div class="s-head reveal"><div class="s-num">06 — Business Model</div><div class="s-title">Revenue Projections — From Financial Model</div></div>
+<div class="content reveal">Wholesale GPU compute via fixed enterprise rack rentals at <strong>~$3.15/GPU-hour</strong> (Year 1, with 5% annual escalation). 884,736 GPU-hours capacity per day across 36,864 GPUs. Phased utilization ramp: 70% Year 1, 80% Year 2, 90% Year 3+.
+<span class="src">Source: ALTi Global three-statement financial model (Vera Rubin variant). GPU-hour pricing benchmarked against current H100 wholesale rates ($2–5/hr, Q4 2025).</span></div>
+
+<div class="ss-title reveal">Phase 1 — Projected P&L (140 MW, 512 Racks)</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th></th><th class="c">2026</th><th class="c">2027</th><th class="c">2028</th><th class="c">2029</th><th class="c">2030</th><th class="c">2031</th></tr></thead>
+<tbody>
+<tr><td class="name">GPU Utilization</td><td class="c">—</td><td class="c mono">70%</td><td class="c mono">80%</td><td class="c mono">90%</td><td class="c mono">90%</td><td class="c mono">90%</td></tr>
+<tr><td class="name">Revenue</td><td class="c mono">$0</td><td class="c mono bold">$712M</td><td class="c mono bold">$854M</td><td class="c mono bold">$1.009B</td><td class="c mono bold">$1.060B</td><td class="c mono bold">$1.113B</td></tr>
+<tr><td class="name">EBITDA</td><td class="c mono">($3.6M)</td><td class="c mono">$494M</td><td class="c mono">$603M</td><td class="c mono">$718M</td><td class="c mono">$753M</td><td class="c mono">$790M</td></tr>
+<tr><td class="name">EBITDA Margin</td><td class="c">—</td><td class="c mono">69.4%</td><td class="c mono">70.6%</td><td class="c mono">71.1%</td><td class="c mono">71.1%</td><td class="c mono">71.0%</td></tr>
+<tr><td class="name">Net Profit</td><td class="c mono">($3.6M)</td><td class="c mono">($331M)</td><td class="c mono">($61M)</td><td class="c mono">$158M</td><td class="c mono">$281M</td><td class="c mono">$392M</td></tr>
+</tbody></table></div>
+<span class="src">Source: ALTi Global financial model — Analysis sheet. Utilization: 70%→80%→90%. Energy at ~130 USD/MWh. 5% annual price escalation.</span>
+
+<div class="ss-title reveal">Phase 2 — Projected P&L (3 × 140 MW, 1,536 Racks · Construction starts Q2 2027)</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th></th><th class="c">2027</th><th class="c">2028</th><th class="c">2029</th><th class="c">2030</th><th class="c">2031</th></tr></thead>
+<tbody>
+<tr><td class="name">Status</td><td class="c" style="color:var(--amber)">Building</td><td class="c" style="color:var(--green)">Yr 1 (70%)</td><td class="c" style="color:var(--green)">Yr 2 (80%)</td><td class="c" style="color:var(--green)">Yr 3 (90%)</td><td class="c" style="color:var(--green)">Yr 4 (90%)</td></tr>
+<tr><td class="name">Revenue (3× P1)</td><td class="c mono">—</td><td class="c mono bold">$2.136B</td><td class="c mono bold">$2.562B</td><td class="c mono bold">$3.027B</td><td class="c mono bold">$3.180B</td></tr>
+<tr><td class="name">EBITDA (3× P1)</td><td class="c mono">—</td><td class="c mono">$1.482B</td><td class="c mono">$1.809B</td><td class="c mono">$2.154B</td><td class="c mono">$2.259B</td></tr>
+<tr><td class="name">Net Profit (3× P1)</td><td class="c mono">—</td><td class="c mono">($993M)</td><td class="c mono">($183M)</td><td class="c mono">$474M</td><td class="c mono">$843M</td></tr>
+</tbody></table></div>
+<span class="src">Phase 2 = 3 × Phase 1 financial model, lagged by 1 year. Same GPU pricing, utilization ramp (70%→80%→90%), cost structure, and EBITDA margins. Construction Q2 2027, first revenue Q2 2028.</span>
+
+<div class="ss-title reveal">Combined Platform — Phase 1 + Phase 2</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th></th><th class="c">2027</th><th class="c">2028</th><th class="c">2029</th><th class="c">2030</th><th class="c">2031</th></tr></thead>
+<tbody>
+<tr><td class="name">Phase 1 Revenue</td><td class="c mono">$712M</td><td class="c mono">$854M</td><td class="c mono">$1.009B</td><td class="c mono">$1.060B</td><td class="c mono">$1.113B</td></tr>
+<tr><td class="name">Phase 2 Revenue (3× P1)</td><td class="c mono">—</td><td class="c mono">$2.136B</td><td class="c mono">$2.562B</td><td class="c mono">$3.027B</td><td class="c mono">$3.180B</td></tr>
+<tr class="total"><td>Combined Revenue</td><td class="c mono bold">$712M</td><td class="c mono bold">$2.990B</td><td class="c mono bold">$3.571B</td><td class="c mono bold">$4.087B</td><td class="c mono bold">$4.293B</td></tr>
+<tr><td class="name">Phase 1 EBITDA</td><td class="c mono">$494M</td><td class="c mono">$603M</td><td class="c mono">$718M</td><td class="c mono">$753M</td><td class="c mono">$790M</td></tr>
+<tr><td class="name">Phase 2 EBITDA (3× P1)</td><td class="c mono">—</td><td class="c mono">$1.482B</td><td class="c mono">$1.809B</td><td class="c mono">$2.154B</td><td class="c mono">$2.259B</td></tr>
+<tr class="total"><td>Combined EBITDA</td><td class="c mono bold">$494M</td><td class="c mono bold">$2.085B</td><td class="c mono bold">$2.527B</td><td class="c mono bold">$2.907B</td><td class="c mono bold">$3.049B</td></tr>
+<tr><td class="name">Combined Net Profit</td><td class="c mono">($331M)</td><td class="c mono">($1.054B)</td><td class="c mono">($25M)</td><td class="c mono">$755M</td><td class="c mono bold" style="color:var(--green)">$1.235B</td></tr>
+</tbody></table></div>
+<span class="src">Phase 2 = exactly 3× Phase 1 financial model, lagged 1 year. Same pricing, utilization ramp, cost structure. Phase 2 construction begins Q2 2027 on confirmed expansion land within 500 MW consortium pathway. First Phase 2 revenue Q2 2028.</span>
+
+<div class="ss-title reveal">Customer Pipeline — Four Target Segments</div>
+<div class="cards cards-2 reveal">
+<div class="card" style="border-top:2px solid var(--blue)">
+<div class="card-label">U.S. Hyperscalers</div>
+<div class="card-value" style="font-size:18px">Wholesale GPU Capacity</div>
+<div class="card-desc" style="line-height:1.8;margin-top:8px">Active negotiations with major hyperscale cloud providers seeking dedicated GPU capacity in the European market. EU data residency requirements and sovereign compute mandates are forcing hyperscalers to secure purpose-built European infrastructure they cannot build fast enough internally. ALTi Global's Vera Rubin NVL144 architecture positions the platform as one of the first European-based next-gen GPU deployments, directly addressing $80B+ in unfulfilled Azure backlog alone.</div>
+</div>
+<div class="card" style="border-top:2px solid var(--green)">
+<div class="card-label">AI Scale-Ups</div>
+<div class="card-value" style="font-size:18px">Dedicated Training Clusters</div>
+<div class="card-desc" style="line-height:1.8;margin-top:8px">High-growth AI companies — including frontier model labs, enterprise AI platforms, and vertical AI specialists — requiring dedicated NVL144 clusters for model training at scale. These companies face hyperscaler pricing constraints ($3-5/GPU-hour for H100) and 6+ month procurement queues. ALTi Global offers 30-50% cost savings, guaranteed capacity, no platform lock-in, and purpose-built Vera Rubin architecture unavailable from incumbents.</div>
+</div>
+<div class="card" style="border-top:2px solid var(--purple)">
+<div class="card-label">European Multinationals</div>
+<div class="card-value" style="font-size:18px">Sovereign AI &amp; Compliance</div>
+<div class="card-desc" style="line-height:1.8;margin-top:8px">European-centric multinational corporations across financial services, pharmaceuticals, automotive, and industrial sectors facing dual pressure: the EU AI Act mandating data sovereignty for AI workloads, and competitive urgency to deploy proprietary AI models. These enterprises require European-hosted, ISO 27001-ready infrastructure with full GDPR compliance, Tier III resiliency, and no dependency on US-headquartered cloud providers.</div>
+</div>
+<div class="card" style="border-top:2px solid var(--amber)">
+<div class="card-label">Middle Eastern Sovereigns</div>
+<div class="card-value" style="font-size:18px">Strategic Backup &amp; Resilience</div>
+<div class="card-desc" style="line-height:1.8;margin-top:8px">Sovereign entities across the Gulf seeking strategic compute capacity through direct infrastructure partnerships, with emphasis on geographic diversification and backup workload resilience. Given the current geopolitical situation in the Middle East, sovereign compute programs (Saudi NEOM, UAE G42/MGX, Qatar digital mandates) are increasingly prioritizing European-based backup infrastructure for mission-critical AI workloads — creating demand for NATO/EU-member-hosted facilities with bilateral treaty protections.</div>
+</div>
+</div>
+</section>
+
+<!-- 7. STRUCTURE -->
+<section id="structure">
+<div class="s-head reveal"><div class="s-num">07 — Corporate Structure</div><div class="s-title">Governance & Vertical Integration</div></div>
+<div class="two-col reveal">
+<div class="card" style="border-left:3px solid var(--gold)"><div class="card-label">Swiss HoldCo</div><div class="card-value" style="font-size:18px">ALT Infrastructure SA, Zurich</div><div class="card-desc">GPU assets as collateral. Revenue via equipment leasing to Polish OpCo. Swiss governance, EU capital markets access.</div></div>
+<div class="card" style="border-left:3px solid var(--blue)"><div class="card-label">Polish OpCo</div><div class="card-value" style="font-size:18px">AGC Poland</div><div class="card-desc">Operations, customer contracts, employees, facility management. SEZ (up to 40% CapEx offset), EU regulatory compliance.</div></div>
+</div>
+
+<div class="ss-title reveal">Vertical Integration — 4 Strategic Acquisitions</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Acquisition</th><th>Strategic Rationale</th><th class="c">Status</th></tr></thead>
+<tbody>
+<tr><td class="name"><span class="blurred">Acquisition A</span></td><td>Mechanical, electrical, and plumbing (MEP) experts; critical execution capability for high-density data center infrastructure</td><td class="c"><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+<tr><td class="name"><span class="blurred">Acquisition B</span></td><td>Architecture firm specializing in commercial, industrial, and high-performance compute facility design</td><td class="c"><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+<tr><td class="name"><span class="blurred">Acquisition C</span></td><td>Renewable energy assets providing behind-the-meter generation and long-term energy cost control</td><td class="c"><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+<tr><td class="name"><span class="blurred">Acquisition D</span></td><td>Specialized cooling engineering for ultra-high-density GPU deployments; NVL144-class thermal management</td><td class="c"><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+</tbody></table></div>
+
+<div class="ss-title reveal">Board & Leadership</div>
+<ul class="blist reveal">
+<li><strong>Michel Combes — Chairman:</strong> Former CEO, SoftBank International. Institutional credibility, SWF network, telecom/infrastructure relationships.</li>
+<li><strong>Jan Sędęk — Founder & CEO:</strong> 19+ years industrial electrical infrastructure. Direct NVIDIA relationships. Large-scale infrastructure across CEE.</li>
+<li><strong>Hunter Lee Soik — Founder & Vice Chairman:</strong> Capital strategy & institutional investor pipeline. SWF/government partnerships across USA, UAE, Europe.</li>
+<li><strong>Marek Pawletko — Founder & Board Member:</strong> Board Member of top-five Polish insurance consortium. Governance and strategic oversight.</li>
+</ul>
+<div class="content reveal" style="font-size:13px;color:var(--text-3)">SHA completed by Baker McKenzie (Zurich). Big Four audit engagement in process. 5-year lock-up, bad leaver at 50% FMV, 1–2 Series A board seats.</div>
+</section>
+
+<!-- 8. FINANCIAL -->
+<section id="financial">
+<div class="s-head reveal"><div class="s-num">08 — Financial Overview</div><div class="s-title">Capital Structure, Returns & Valuation</div></div>
+
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Capital Layer</th><th class="c">Amount</th><th class="c">Status</th></tr></thead>
+<tbody>
+<tr><td class="name">Founder Capital</td><td class="c mono">$7M</td><td class="c">Invested</td></tr>
+<tr><td class="name">Seed Round</td><td class="c mono">$64M</td><td class="c">Closing within 30 days</td></tr>
+<tr><td class="name">Equity Investment (Phase 1)</td><td class="c mono">$1.2B</td><td class="c">From financial model</td></tr>
+<tr><td class="name">GPU Financing (Debt/Lease)</td><td class="c mono">$3.072B</td><td class="c">6% cost of debt, 5-yr term</td></tr>
+<tr class="total"><td>Total Phase 1 Investment</td><td class="c mono">$4.272B</td><td class="c">Equity + GPU Finance</td></tr>
+<tr><td class="name" style="padding-top:20px">Phase 2: 3× Facility Replication</td><td class="c mono" style="padding-top:20px">~$12.81B</td><td class="c" style="padding-top:20px">3 × $4.27B (identical template)</td></tr>
+<tr class="total"><td>Total Platform Investment (P1 + P2)</td><td class="c mono">~$17.1B</td><td class="c">Staged over 2026–2029</td></tr>
+</tbody></table></div>
+<span class="src">Source: ALTi Global financial model — DCF Analysis & Leasing sheets. GPU equipment: 512 NVL144 racks × $6.0M = $3.072B (20% volume discount from nominal).</span>
+
+<div class="ss-title reveal">Phase 1 Investment Returns — From Financial Model</div>
+<div class="metrics reveal">
+<div class="metric"><div class="metric-val" style="color:var(--green)">28.3%</div><div class="metric-lbl">Unlevered IRR</div></div>
+<div class="metric"><div class="metric-val" style="color:var(--green)">53.7%</div><div class="metric-lbl">Levered IRR</div></div>
+<div class="metric"><div class="metric-val">2.96×</div><div class="metric-lbl">MOIC (Total)</div></div>
+<div class="metric"><div class="metric-val" style="color:var(--gold)">12.17×</div><div class="metric-lbl">MOIC (Equity)</div></div>
+<div class="metric"><div class="metric-val">$6.53B</div><div class="metric-lbl">P1 DCF EV</div></div>
+<div class="metric"><div class="metric-val">$7.90B</div><div class="metric-lbl">P1 Exit (10× EBITDA)</div></div>
+</div>
+<span class="src">Source: ALTi Global financial model — IRR Analysis, DCF Analysis, Investment Metrics sheets. WACC 8%, terminal growth 2%, 10× EV/EBITDA exit. 5-year hold period (2026–2031). Phase 2 returns expected to replicate Phase 1 IRR profile given identical template and cost structure.</span>
+
+<div class="ss-title reveal">ALTi Global — Implied Valuation Range</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>EV/Revenue Multiple</th><th class="c">Phase 1 Only<br><span style="font-weight:400;font-size:9px">(Yr 3: $1.01B rev)</span></th><th class="c">Phase 1 + Phase 2<br><span style="font-weight:400;font-size:9px">(Steady: $4.29B rev)</span></th><th>Methodology</th></tr></thead>
+<tbody>
+<tr class="alti"><td class="bold">8.0× (Conservative)</td><td class="c mono bold">$8.1B</td><td class="c mono bold">$34.3B</td><td>Traditional DC REIT range</td></tr>
+<tr class="alti"><td class="bold">11.6× (Wtd. Avg. Comps)</td><td class="c mono bold">$11.7B</td><td class="c mono bold">$49.8B</td><td>Weighted avg. of 10 comps</td></tr>
+<tr class="alti"><td class="bold">15.0× (GPU Cloud Premium)</td><td class="c mono bold">$15.1B</td><td class="c mono bold">$64.4B</td><td>CoreWeave / Aligned tier</td></tr>
+<tr style="background:#0a0e14"><td colspan="4" style="padding:6px 16px;font-size:11px;color:var(--text-3)">Phase 1 DCF: $6.53B (WACC 8%, 10× exit). Phase 2 multiples applied to combined steady-state revenue ($4.29B). Pre-revenue assets trade at significant discounts. Total platform investment: ~$17.1B.</td></tr>
+</tbody></table></div>
+
+<div class="ss-title reveal">Comparable Transaction Analysis — 10-Company Weighted</div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Company</th><th class="c">LTM Rev</th><th class="c">Enterprise Value</th><th class="c">EV/Rev</th><th class="c">EV/EBITDA</th><th class="c">Weight</th></tr></thead>
+<tbody>
+<tr><td class="name">CoreWeave (CRWV)</td><td class="c mono">$5.1B</td><td class="c mono">$67.3B</td><td class="c mono">13.2×</td><td class="c mono">21.4×</td><td class="c">20%</td></tr>
+<tr><td class="name">Equinix (EQIX)</td><td class="c mono">$9.1B</td><td class="c mono">$70.1B</td><td class="c mono">7.7×</td><td class="c mono">18.4×</td><td class="c">15%</td></tr>
+<tr><td class="name">Digital Realty (DLR)</td><td class="c mono">$6.0B</td><td class="c mono">$51.0B</td><td class="c mono">8.5×</td><td class="c mono">22.0×</td><td class="c">10%</td></tr>
+<tr><td class="name">Aligned DC (2025 acq.)</td><td class="c mono">~$2.7B</td><td class="c mono">$40.0B</td><td class="c mono">~15×</td><td class="c mono">~25×</td><td class="c">15%</td></tr>
+<tr><td class="name">AirTrunk (2024 acq.)</td><td class="c mono">~$0.9B</td><td class="c mono">A$24B</td><td class="c mono">~18×</td><td class="c mono">~28×</td><td class="c">10%</td></tr>
+<tr><td class="name">QTS (2021 acq.)</td><td class="c mono">~$0.6B</td><td class="c mono">$10.0B</td><td class="c mono">~14×</td><td class="c mono">~25×</td><td class="c">5%</td></tr>
+<tr><td class="name">Vantage DC (private)</td><td class="c mono">~$1.2B</td><td class="c mono">~$14.4B</td><td class="c mono">~12×</td><td class="c mono">~22×</td><td class="c">5%</td></tr>
+<tr><td class="name">Switch (private)</td><td class="c mono">~$0.8B</td><td class="c mono">~$8.0B</td><td class="c mono">~10×</td><td class="c mono">~20×</td><td class="c">5%</td></tr>
+<tr><td class="name">American Tower (AMT)</td><td class="c mono">$11.1B</td><td class="c mono">$99.9B</td><td class="c mono">9.0×</td><td class="c mono">19.0×</td><td class="c">10%</td></tr>
+<tr><td class="name">Iron Mountain (IRM)</td><td class="c mono">$6.2B</td><td class="c mono">$46.5B</td><td class="c mono">7.5×</td><td class="c mono">17.5×</td><td class="c">5%</td></tr>
+<tr class="total"><td>Weighted Average</td><td class="c"></td><td class="c"></td><td class="c mono">~11.6×</td><td class="c mono">~21.8×</td><td class="c">100%</td></tr>
+<tr class="alti"><td class="bold">ALTi Global — Phase 1</td><td class="c mono bold">$1.01B</td><td class="c mono bold">$8.1B – $15.1B</td><td class="c mono">8×–15×</td><td class="c mono">—</td><td class="c">P1 only</td></tr>
+<tr class="alti"><td class="bold">ALTi Global — P1 + P2</td><td class="c mono bold">$4.29B</td><td class="c mono bold">$34.3B – $64.4B</td><td class="c mono">8×–15×</td><td class="c mono">—</td><td class="c">Steady-st.</td></tr>
+</tbody></table></div>
+<div style="margin-top:12px">
+<span class="src">CoreWeave: EV $67.3B, LTM rev $5.1B, EV/Rev 13.2×, EV/EBITDA 21.4× — <a href="https://multiples.vc/public-comps/coreweave-valuation-multiples" target="_blank">Public Comps (Jan 2026)</a>; <a href="https://www.fool.com/earnings/call-transcripts/2026/02/27/coreweave-crwv-q4-2025-earnings-call-transcript/" target="_blank">Motley Fool Q4 2025 Transcript (Feb 2026)</a></span><br>
+<span class="src">Equinix: EV ~$70B, LTM rev $9.1B, 2026E rev $10.1–10.2B — <a href="https://newsroom.equinix.com/2026-02-11-Equinix-Provides-Robust-2026-Outlook-Driven-by-Strong-Fourth-Quarter-Results-and-Accelerating-Business-Momentum" target="_blank">Equinix Q4 2025 PR (Feb 2026)</a></span><br>
+<span class="src">Digital Realty: LTM rev ~$6.0B, adj. EBITDA ~$3.5B — <a href="https://www.datacenterdynamics.com/en/news/q3-2025-colo-results-equinix-digital-realty-american-tower-and-iron-mountain/" target="_blank">DCD Q3 2025 Results (Nov 2025)</a></span><br>
+<span class="src">Aligned DC: $40B acquisition by MGX/BlackRock/GIP — <a href="https://www.cnbc.com/2025/12/19/data-center-deals-hit-record-amid-ai-funding-concerns-grip-investors.html" target="_blank">CNBC (Dec 2025)</a></span><br>
+<span class="src">AirTrunk: A$24B acquisition by Blackstone (2024); QTS: $10B acquisition by Blackstone (2021) — <a href="https://www.datacenterdynamics.com" target="_blank">DCD M&A Database</a></span><br>
+</div>
+</section>
+
+<!-- 9. TEAM -->
+<section id="team">
+<div class="s-head reveal"><div class="s-num">09 — Team & Partnerships</div><div class="s-title">Execution Capability</div></div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Partner</th><th>Role</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="name">NVIDIA</td><td>GPU supplier & technology partner</td><td><span class="badge badge-green">Letter in draft · Architecture validated · GTC 2026</span></td></tr>
+<tr><td class="name">Delta</td><td>NVIDIA-accredited installer (41 yrs)</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+<tr><td class="name"><span class="blurred">Acq. A</span></td><td>MEP contractor (acquisition)</td><td><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+<tr><td class="name"><span class="blurred">Acq. B</span></td><td>Architecture firm (acquisition)</td><td><span class="badge badge-blue-accent">Closing 30d</span></td></tr>
+<tr><td class="name">EU Networks</td><td>Fiber connectivity</td><td><span class="badge badge-green">Confirmed</span></td></tr>
+<tr><td class="name">Baker McKenzie</td><td>Legal counsel (Zurich)</td><td><span class="badge badge-green">SHA complete</span></td></tr>
+<tr><td class="name">Big Four Firm</td><td>Audit & compliance</td><td><span class="badge badge-blue">In process</span></td></tr>
+</tbody></table></div>
+</section>
+
+<!-- 10. RISK -->
+<section id="risk">
+<div class="s-head reveal"><div class="s-num">10 — Risk Factors</div><div class="s-title">Transparent Disclosure & Mitigants</div></div>
+<div class="tbl-wrap reveal"><table>
+<thead><tr><th>Risk</th><th>Description</th><th>Mitigants</th></tr></thead>
+<tbody>
+<tr><td class="name">Construction</td><td>First build at this scale</td><td>4 vertically integrated acquisitions, NVIDIA-accredited installer, purpose-built NVL144 design</td></tr>
+<tr><td class="name">Power</td><td>Scaling 140→540 MW</td><td>Signed consortium (500 MW pathway covers P1+P2), renewable energy assets, BESS, PSE 1 GW national grid application</td></tr>
+<tr><td class="name">Market</td><td>Pre-revenue pipeline</td><td>$600B+ hyperscaler capex in 2026 (CreditSights), structural deficit, active negotiations</td></tr>
+<tr><td class="name">Technology</td><td>Rapid GPU evolution</td><td>Purpose-built NVL144, modular upgrades, NVIDIA partnership, 3rd-gen MGX cable-free design</td></tr>
+<tr><td class="name">Regulatory</td><td>Geopolitical proximity</td><td>NATO/EU member, SEZ 15-year terms, EU AI Act creates sovereign compute demand</td></tr>
+<tr><td class="name">Financing</td><td>$17.1B total platform capital</td><td>Staged P1→P2, blended equity + debt, P1 model shows 28.3% IRR, P2 replicates proven template</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- 11. ROADMAP -->
+<section id="roadmap">
+<div class="s-head reveal"><div class="s-num">11 — Execution Roadmap</div><div class="s-title">Milestone-Driven Deployment</div></div>
+<div class="cards cards-3 reveal">
+<div class="card" style="border-left:3px solid var(--blue)"><div class="card-label">Through May 2026</div><div class="card-value" style="font-size:18px">Foundation</div><ul class="blist" style="margin-top:8px"><li>Close $64M seed + 4 acquisitions</li><li>Finalize NVIDIA commitment letter</li><li>Advance customer LOIs</li><li>Big Four audit engagement</li><li>$30M+ incentive applications</li></ul></div>
+<div class="card" style="border-left:3px solid var(--gold)"><div class="card-label">May–August 2026</div><div class="card-value" style="font-size:18px">Anchor Capital</div><ul class="blist" style="margin-top:8px"><li>Close &gt;$1B blended financing</li><li>Begin Phase 1 construction (Q2)</li><li>Advance Romania & Bulgaria sites</li><li>Target SWF/infra anchor investors</li></ul></div>
+<div class="card" style="border-left:3px solid var(--green)"><div class="card-label">Q1–Q2 2027</div><div class="card-value" style="font-size:18px">Go-Live + Phase 2 Start</div><ul class="blist" style="margin-top:8px"><li>Phase 1 NVL144 install & go-live</li><li>Customer onboarding → $712M Yr 1</li><li>Phase 2: begin 3× 140 MW construction</li><li>Phase 2 first revenue H1 2028</li></ul></div>
+</div>
+</section>
+
+<!-- 12. INVESTORS -->
+<section id="investors">
+<div class="s-head reveal"><div class="s-num">12 — AI Infrastructure Capital</div><div class="s-title">SWFs & Asset Managers</div><div class="s-sub">SWFs deployed $66B+ into AI & digital infrastructure in 2025. The hyperscaler capex supercycle — projected to exceed $600B in 2026 — is creating unprecedented demand for co-investment capital from sovereign and institutional allocators, reshaping how AI infrastructure gets financed globally.<br><span class="src">Sources: <a href="https://globalswf.com" target="_blank">Global SWF Annual Report (Q4 2025)</a>; <a href="https://know.creditsights.com/insights/technology-hyperscaler-capex-2026-estimates/" target="_blank">CreditSights Hyperscaler Capex Report (Nov 2025)</a></span></div></div>
+<div class="tabs reveal">
+<button class="tab-btn active" onclick="switchTab('swf')">Sovereign Wealth Funds</button>
+<button class="tab-btn" onclick="switchTab('pe')">Asset Managers & PE</button>
+<button class="tab-btn" onclick="switchTab('apac')">APAC</button>
+</div>
+<div class="tab-panel active" id="tab-swf"><div class="cards cards-2 reveal">
+<div class="inv-card" style="border-left-color:var(--purple)"><img src="https://logo.clearbit.com/mgx.ae" class="inv-logo" alt="MGX" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">MGX</div><div class="inv-flag">🇦🇪</div><div class="inv-name">MGX <span class="inv-aum">Mubadala-backed</span></div><div class="inv-type">AI Investment Vehicle — Abu Dhabi</div><div class="inv-detail">Co-led <strong>$40B Aligned DC</strong> deal with BlackRock/GIP. Anchor investor in <strong>Stargate ($500B)</strong> alongside OpenAI & SoftBank. Raising <strong>$25B</strong> for dedicated AI infrastructure fund. Key member of the AI Infrastructure Partnership (AIP).<br><span class="src"><a href="https://www.cnbc.com/2025/12/19/data-center-deals-hit-record-amid-ai-funding-concerns-grip-investors.html" target="_blank">CNBC (Dec 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--purple)"><img src="https://logo.clearbit.com/mubadala.com" class="inv-logo" alt="MIC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">MIC</div><div class="inv-flag">🇦🇪</div><div class="inv-name">Mubadala <span class="inv-aum">$302B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Abu Dhabi</div><div class="inv-detail">Record <strong>$32.7B</strong> deployed in 2025 across 40 transactions — most active SWF globally. $12.9B directed to AI & digital infrastructure. Parent entity of MGX. Strategic partner to BlackRock.<br><span class="src"><a href="https://www.bloomberg.com" target="_blank">Bloomberg (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--green)"><img src="https://logo.clearbit.com/pif.gov.sa" class="inv-logo" alt="PIF" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">PIF</div><div class="inv-flag">🇸🇦</div><div class="inv-name">Saudi PIF <span class="inv-aum">$930B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Saudi Arabia</div><div class="inv-detail"><strong>$36.2B deployed</strong> in 2025 — largest SWF dealmaker globally. AI is a priority mandate through NEOM and advanced technology investments. Saudi Arabia introducing DC investment frameworks for foreign providers.<br><span class="src"><a href="https://globalswf.com" target="_blank">Global SWF (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--amber)"><img src="https://logo.clearbit.com/qia.qa" class="inv-logo" alt="QIA" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">QIA</div><div class="inv-flag">🇶🇦</div><div class="inv-name">QIA <span class="inv-aum">$524B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Qatar</div><div class="inv-detail">Anchored Blue Owl's <strong>$3B+ DC platform</strong> with $1B initial equity commitment. Investor in <strong>Anthropic Series F ($13B round)</strong>. Committed $500B to US over next decade with AI & data centers as priority sectors.<br><span class="src"><a href="https://www.sec.gov" target="_blank">SEC Filings (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--blue)"><img src="https://logo.clearbit.com/adia.ae" class="inv-logo" alt="ADIA" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">ADIA</div><div class="inv-flag">🇦🇪</div><div class="inv-name">ADIA <span class="inv-aum">$1T AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Abu Dhabi</div><div class="inv-detail">World's 3rd largest SWF. Active in DC sector, backed Thoma Bravo's $12B Dayforce acquisition. Co-investor in Blackstone/Hologic $18.3B deal. Increasingly deploying directly into digital infrastructure and AI-adjacent assets.<br><span class="src"><a href="https://www.bloomberg.com" target="_blank">Bloomberg (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--amber)"><img src="https://logo.clearbit.com/kia.gov.kw" class="inv-logo" alt="KIA" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">KIA</div><div class="inv-flag">🇰🇼</div><div class="inv-name">KIA <span class="inv-aum">$969B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Kuwait</div><div class="inv-detail"><strong>$6B deployed into AI & digitalization</strong> in 2025 — second-largest Middle East SWF allocation to the sector after Mubadala. Growing infrastructure and technology mandate.<br><span class="src"><a href="https://globalswf.com" target="_blank">Global SWF (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--cyan)"><img src="https://logo.clearbit.com/adq.ae" class="inv-logo" alt="ADQ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">ADQ</div><div class="inv-flag">🇦🇪</div><div class="inv-name">ADQ / XRG <span class="inv-aum">$200B+ AUM</span></div><div class="inv-type">Sovereign Holding & Energy — Abu Dhabi</div><div class="inv-detail">ADQ assets doubled in 4 years, investing in critical minerals for AI. XRG (ADNOC's intl. arm) focused on <strong>energy systems powering data centers</strong>, bridging hydrocarbon capital with AI infrastructure demand.<br><span class="src"><a href="https://www.reuters.com" target="_blank">Reuters (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--green)"><img src="https://logo.clearbit.com/danantara.go.id" class="inv-logo" alt="DI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">DI</div><div class="inv-flag">🇮🇩</div><div class="inv-name">Danantara <span class="inv-aum">$900B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Indonesia (est. 2025)</div><div class="inv-detail">Indonesia's newest SWF, 7th largest globally. AI and digital ecosystem designated as <strong>priority investment areas</strong>. Sovereign AI Fund planned for 2027–2029. $4B co-investment partnership with Qatar announced.<br><span class="src"><a href="https://www.asiahouse.org/2025/09/30/danantara-indonesia-the-rise-of-a-sovereign-wealth-powerhouse/" target="_blank">Asia House (Sep 2025)</a>; <a href="https://govinsider.asia/intl-en/article/indonesias-new-sovereign-wealth-fund-is-making-the-country-a-global-economic-powerhouse" target="_blank">GovInsider (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--blue)"><img src="https://logo.clearbit.com/cppinvestments.com" class="inv-logo" alt="CPP" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">CPP</div><div class="inv-flag">🇨🇦</div><div class="inv-name">CPP Investments <span class="inv-aum">C$675B AUM</span></div><div class="inv-type">Pension Fund — Canada</div><div class="inv-detail">Canada's largest pension fund. Active infrastructure investor with growing digital and data center portfolio. Long-duration capital aligned with AI infrastructure build cycle.<br><span class="src"><a href="https://www.cppinvestments.com" target="_blank">CPP Investments AR (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--blue)"><img src="https://logo.clearbit.com/cdpq.com" class="inv-logo" alt="CAN" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">CAN</div><div class="inv-flag">🇨🇦</div><div class="inv-name">CDPQ / OTPP / BCI <span class="inv-aum">C$1T+ combined</span></div><div class="inv-type">Canadian Pension Alliance</div><div class="inv-detail">CDPQ (~C$473B), Ontario Teachers' (~C$266B), and British Columbia Investment (~C$250B) collectively represent massive infrastructure capital. CDPQ invested in European digital infrastructure; OTPP active in data center JVs.<br><span class="src"><a href="https://www.cdpq.com" target="_blank">CDPQ AR (2025)</a></span></div></div>
+</div></div>
+<div class="tab-panel" id="tab-pe"><div class="cards cards-2 reveal">
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇺🇸</div><div class="inv-name">BlackRock / GIP <span class="inv-aum">$11.5T AUM</span></div><div class="inv-type">Asset Manager — New York</div><div class="inv-detail">Led <strong>$40B Aligned DC acquisition</strong> (largest DC deal ever). AI Infrastructure Partnership (AIP) targeting <strong>$30B equity / $100B total deployment</strong>. GIP manages ~$170B, scaling to $210B by 2026.<br><span class="src"><a href="https://www.cnbc.com/2025/12/19/data-center-deals-hit-record-amid-ai-funding-concerns-grip-investors.html" target="_blank">CNBC (Dec 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇺🇸</div><div class="inv-name">Blackstone <span class="inv-aum">$1.1T AUM</span></div><div class="inv-type">Private Equity — New York</div><div class="inv-detail">Acquired <strong>QTS for $10B</strong> (2021) and <strong>AirTrunk for A$24B</strong> (2024). Aggressively expanding both portfolios. The dominant PE player in global data center ownership with billions in additional committed capital.<br><span class="src"><a href="https://www.bloomberg.com" target="_blank">Bloomberg (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇨🇦</div><div class="inv-name">Brookfield <span class="inv-aum">$1T AUM</span></div><div class="inv-type">Alt. Asset Manager — Toronto</div><div class="inv-detail">Major DC developer in Europe and Americas. Power and renewables portfolio critical for energy-for-AI. Developing gigawatt-scale campuses including facilities in Sweden (Strängnäs) and North America.<br><span class="src"><a href="https://www.brookfield.com" target="_blank">Brookfield IR (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇺🇸</div><div class="inv-name">KKR <span class="inv-aum">$637B AUM</span></div><div class="inv-type">Private Equity — New York</div><div class="inv-detail">Growing digital infrastructure portfolio with active Middle East franchise. DC investments increasingly co-invested with SWF capital. Targeting infrastructure-grade AI assets across US and Europe.<br><span class="src"><a href="https://www.kkr.com/insights/ai-infrastructure" target="_blank">KKR AI Infrastructure Report (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇸🇪</div><div class="inv-name">EQT <span class="inv-aum">€130B AUM</span></div><div class="inv-type">Private Equity — Stockholm</div><div class="inv-detail">Leading European PE firm with dedicated infrastructure strategy. Active in power generation, cooling systems, and secondary DC infrastructure across Europe. Growing AI-adjacent portfolio through EQT Infrastructure funds.<br><span class="src"><a href="https://www.eqtgroup.com" target="_blank">EQT Group (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇫🇷</div><div class="inv-name">Amundi <span class="inv-aum">€2.2T AUM</span></div><div class="inv-type">Asset Manager — Paris</div><div class="inv-detail">Europe's largest asset manager. Expanding real assets and infrastructure allocation with growing focus on digital infrastructure and energy transition assets that support AI data center buildout.<br><span class="src"><a href="https://www.amundi.com" target="_blank">Amundi AR (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇦🇺</div><div class="inv-name">Macquarie <span class="inv-aum">$600B+ AUM</span></div><div class="inv-type">Infrastructure Manager — Sydney</div><div class="inv-detail">Pioneered DC infrastructure investing. Sold <strong>Aligned ($40B)</strong> and <strong>AirTrunk (A$24B)</strong> — two of the largest DC exits ever. Deep global digital infrastructure portfolio spanning towers, fiber, and colocation.<br><span class="src"><a href="https://www.macquarie.com" target="_blank">Macquarie IR (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇺🇸</div><div class="inv-name">Microsoft / NVIDIA <span class="inv-aum">Strategic</span></div><div class="inv-type">Corporate AI Infrastructure Investors</div><div class="inv-detail">Both AIP members. Microsoft investing <strong>$120B+</strong> in FY2026 AI DC capex. NVIDIA building own AI Factory Research Center in Manassas, VA for Vera Rubin reference designs. Combined strategic influence shapes the entire AI infrastructure market.<br><span class="src"><a href="https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/" target="_blank">Futurum Group (Feb 2026)</a>; <a href="https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer" target="_blank">NVIDIA Newsroom (Jan 2026)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--text)"><div class="inv-flag">🇺🇸</div><div class="inv-name">Goldman Sachs / TPG <span class="inv-aum">$334B dry powder</span></div><div class="inv-type">PE & Infrastructure Funds</div><div class="inv-detail">Active across the DC supply chain. Goldman sold Boyd Thermal to Eaton ($9.5B). TPG investing in power generation and secondary DC infrastructure. <strong>$334B</strong> in infrastructure-focused dry powder as of end-2025.<br><span class="src"><a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026" target="_blank">Goldman Sachs Research (Dec 2025)</a></span></div></div>
+</div></div>
+<div class="tab-panel" id="tab-apac"><div class="cards cards-2 reveal">
+<div class="inv-card" style="border-left-color:var(--cyan)"><img src="https://logo.clearbit.com/gic.com.sg" class="inv-logo" alt="GIC" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">GIC</div><div class="inv-flag">🇸🇬</div><div class="inv-name">GIC <span class="inv-aum">$770B+ AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Singapore</div><div class="inv-detail">Co-investor in <strong>Anthropic</strong> and Blackstone/Hologic deal. Deep portfolio in digital infrastructure, global DC assets, and semiconductor supply chain. Long-duration capital ideal for AI infrastructure build cycle.<br><span class="src"><a href="https://www.gic.com.sg" target="_blank">GIC AR (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--cyan)"><img src="https://logo.clearbit.com/temasek.com.sg" class="inv-logo" alt="TEM" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">TEM</div><div class="inv-flag">🇸🇬</div><div class="inv-name">Temasek <span class="inv-aum">$389B AUM</span></div><div class="inv-type">Sovereign Investment — Singapore</div><div class="inv-detail">Owns <strong>ST Telemedia Global Data Centres</strong> with facilities across APAC. Active investor in AI companies, semiconductor firms, and digital infrastructure platforms. Strategic bridge between APAC and global AI capital flows.<br><span class="src"><a href="https://www.temasek.com.sg" target="_blank">Temasek AR (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--green)"><img src="https://logo.clearbit.com/danantara.go.id" class="inv-logo" alt="DI" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">DI</div><div class="inv-flag">🇮🇩</div><div class="inv-name">Danantara <span class="inv-aum">$900B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Indonesia (est. 2025)</div><div class="inv-detail">7th largest SWF globally. AI & digital ecosystem designated as priority investment areas. Sovereign AI Fund planned for 2027–2029 period. $4B co-investment partnership with Qatar. Oracle partnership confirmed for AI data sovereignty.<br><span class="src"><a href="https://www.asiahouse.org/2025/09/30/danantara-indonesia-the-rise-of-a-sovereign-wealth-powerhouse/" target="_blank">Asia House (Sep 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--blue)"><img src="https://logo.clearbit.com/nps.or.kr" class="inv-logo" alt="NPS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">NPS</div><div class="inv-flag">🇰🇷</div><div class="inv-name">NPS <span class="inv-aum">$800B AUM</span></div><div class="inv-type">National Pension Service — South Korea</div><div class="inv-detail">World's 3rd largest pension fund. Expanding alternative investments allocation with growing digital infrastructure mandate. Active in global infrastructure co-investments alongside PE sponsors.<br><span class="src"><a href="https://www.reuters.com" target="_blank">Reuters (Q4 2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--blue)"><img src="https://logo.clearbit.com/khazanah.com.my" class="inv-logo" alt="KNB" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">KNB</div><div class="inv-flag">🇲🇾</div><div class="inv-name">Khazanah Nasional <span class="inv-aum">$30B AUM</span></div><div class="inv-type">Sovereign Wealth Fund — Malaysia</div><div class="inv-detail">Malaysian SWF with growing digital infrastructure portfolio. Strategic investor in Southeast Asian technology and data center assets. Partner in regional sovereign compute initiatives.<br><span class="src"><a href="https://www.khazanah.com.my" target="_blank">Khazanah AR (2025)</a></span></div></div>
+<div class="inv-card" style="border-left-color:var(--cyan)"><img src="https://logo.clearbit.com/airtrunk.com" class="inv-logo" alt="AT" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="inv-logo-fallback" style="display:none">AT</div><div class="inv-flag">🇦🇺</div><div class="inv-name">AirTrunk / Blackstone <span class="inv-aum">A$24B platform</span></div><div class="inv-type">APAC Data Center Platform</div><div class="inv-detail">Blackstone's A$24B AirTrunk acquisition created the dominant APAC DC platform. Expanding hyperscale capacity across Australia, Japan, Singapore, and Malaysia. Validates APAC demand for sovereign-adjacent infrastructure.<br><span class="src"><a href="https://www.bloomberg.com" target="_blank">Bloomberg (Q4 2025)</a></span></div></div>
+</div></div>
+</section>
+
+<!-- 12.5 SUPPLEMENTARY -->
+<section>
+<div class="s-head reveal"><div class="s-num">Supplementary</div><div class="s-title">Intelligence Dashboards</div></div>
+<a href="romania_site_analysis.html" target="_blank" class="romania-link reveal">
+<div class="rl-badge">🇷🇴 Expansion Site</div>
+<div class="rl-title">Romania — Avram Iancu Site Analysis (2 GW)</div>
+<div class="rl-desc">Full-permit site analysis using the 24-Factor Institutional Scoring Matrix. MPP 130 MW Mixt Power Plant. Click to open →</div>
+</a>
+<a href="datacenter-dashboard.html" target="_blank" class="romania-link reveal" style="border-left-color:var(--green);margin-top:16px">
+<div class="rl-badge" style="color:var(--green)">🌐 Market Intelligence</div>
+<div class="rl-title">Global Data Center & Vera Rubin Deployment Tracker</div>
+<div class="rl-desc">Live intelligence on operating mega-sites, planned Vera Rubin NVL144 deployments, and the sovereign & institutional capital powering the AI infrastructure supercycle. Click to open →</div>
+</a>
+</section>
+
+<!-- 13. DATA ROOM -->
+<section id="dataroom">
+<div class="s-head reveal"><div class="s-num">13 — Data Room</div><div class="s-title">Data Room Contents</div><div class="s-sub">The following materials are available or in preparation for qualified investor review upon execution of a non-disclosure agreement.</div></div>
+
+<div class="cards cards-2 reveal">
+<div class="card"><div class="card-label">Corporate & Legal</div><div class="card-desc" style="line-height:1.8">Swiss HoldCo formation documents (ALT Infrastructure SA, Zurich); Polish OpCo registration (AGC Poland); Shareholders' Agreement (Baker McKenzie, Zurich — complete); Investment Agreement template; board resolutions; Big Four audit engagement documentation.</div></div>
+<div class="card"><div class="card-label">Financial</div><div class="card-desc" style="line-height:1.8">Three-statement financial model (scenario-based, U.S./international SWF standard); five-year projections with DCF, IRR, MOIC analysis; capital structure and use of funds; comparable transaction analysis; GPU lease terms and financing documentation.</div></div>
+<div class="card"><div class="card-label">Technical</div><div class="card-desc" style="line-height:1.8">EPC contractor CAPEX proposal (full 46-page scope of works across 7 work packages); facility design specifications; NVIDIA Vera Rubin NVL144 architecture documentation; cooling and power distribution schematics; Tier III design certification.</div></div>
+<div class="card"><div class="card-label">Site & Energy</div><div class="card-desc" style="line-height:1.8">Power consortium allocation documentation (140 MW confirmed, 500 MW pathway); site plans and surveys; SEZ confirmation and tax incentive calculations ($30M+ identified); BESS integration specifications; behind-the-meter renewable energy documentation.</div></div>
+<div class="card"><div class="card-label">Commercial</div><div class="card-desc" style="line-height:1.8">Customer pipeline summary with engagement status; market analysis and demand projections; competitive landscape assessment; pricing methodology and GPU-hour benchmarking; off-taker strategy documentation.</div></div>
+<div class="card"><div class="card-label">Team</div><div class="card-desc" style="line-height:1.8">Full biographies and reference contacts; organizational chart; advisory board composition; key partnership agreements (NVIDIA, Delta, EU Networks, Baker McKenzie); vertical integration acquisition documentation.</div></div>
+</div>
+</section>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+<div class="conf">THIS DOCUMENT CONTAINS CONFIDENTIAL AND PROPRIETARY INFORMATION · DISTRIBUTION WITHOUT PRIOR WRITTEN CONSENT IS STRICTLY PROHIBITED</div>
+<div class="brand">ALTi Global</div>
+<div style="margin-bottom:24px">ALT Infrastructure SA, Zurich · AGC Poland</div>
+<div>For inquiries, please contact the Capital Strategy team.</div>
+<div style="margin-top:16px;margin-bottom:32px">Data Room (V1) available upon NDA execution · March 2026</div>
+
+<div style="max-width:900px;margin:0 auto;text-align:left;padding:32px 0;border-top:1px solid var(--border)">
+<div style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic;margin-bottom:16px;text-align:center;color:var(--text-2)">Sources & References</div>
+<div style="columns:2;column-gap:32px;font-size:11px;line-height:2.2;color:var(--text-3)">
+<a href="https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer" target="_blank">NVIDIA Vera Rubin Platform Launch (Jan 6, 2026)</a><br>
+<a href="https://www.nvidia.com/en-us/data-center/vera-rubin-nvl72/" target="_blank">NVIDIA Vera Rubin NVL72 Product Page (Jan 2026)</a><br>
+<a href="https://developer.nvidia.com/blog/inside-the-nvidia-rubin-platform-six-new-chips-one-ai-supercomputer/" target="_blank">NVIDIA Technical Blog — Rubin Deep Dive (Feb 2026)</a><br>
+<a href="https://www.storagereview.com/news/nvidia-launches-vera-rubin-architecture-at-ces-2026-the-vr-nvl72-rack" target="_blank">StorageReview NVL72 Analysis (Jan 7, 2026)</a><br>
+<a href="https://videocardz.com/newz/nvidia-vera-rubin-nvl72-detailed-72-gpus-36-cpus-260-tb-s-scale-up-bandwidth" target="_blank">VideoCardz Vera Rubin Specs (Jan 6, 2026)</a><br>
+<a href="https://www.tomshardware.com/pc-components/gpus/nvidia-launches-vera-rubin-nvl72-ai-supercomputer-at-ces" target="_blank">Tom's Hardware Vera Rubin Launch (Jan 5, 2026)</a><br>
+<a href="https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Support-for-Upcoming-NVIDIA-Vera-Rubin-NVL72" target="_blank">Supermicro Vera Rubin Support PR (Jan 5, 2026)</a><br>
+<a href="https://know.creditsights.com/insights/technology-hyperscaler-capex-2026-estimates/" target="_blank">CreditSights Hyperscaler Capex 2026 (Nov 2025)</a><br>
+<a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026" target="_blank">Goldman Sachs AI Capex Outlook (Dec 2025)</a><br>
+<a href="https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/" target="_blank">Futurum Group AI Capex $690B Report (Feb 2026)</a><br>
+<a href="https://techblog.comsoc.org/2025/12/22/hyperscaler-capex-600-bn-in-2026" target="_blank">IEEE ComSoc Hyperscaler Capex (Dec 2025)</a><br>
+<a href="https://iot-analytics.com/data-center-infrastructure-market/" target="_blank">IoT Analytics DC Infrastructure Report (Nov 2025)</a><br>
+<a href="https://introl.com/blog/hyperscaler-capex-600b-2026-ai-infrastructure-debt-january-2026" target="_blank">Introl Hyperscaler Analysis (Jan 2026)</a><br>
+<a href="https://www.datacenterknowledge.com/hyperscalers/hyperscalers-in-2026" target="_blank">Data Center Knowledge Hyperscalers 2026 (Mar 2026)</a><br>
+<a href="https://multiples.vc/public-comps/coreweave-valuation-multiples" target="_blank">CoreWeave Valuation Multiples (Jan 2026)</a><br>
+<a href="https://www.fool.com/earnings/call-transcripts/2026/02/27/coreweave-crwv-q4-2025-earnings-call-transcript/" target="_blank">CoreWeave Q4 2025 Earnings Transcript (Feb 2026)</a><br>
+<a href="https://www.constellationr.com/insights/news/coreweave-tops-5-billion-revenue-2025" target="_blank">Constellation Research — CoreWeave Revenue (Feb 2026)</a><br>
+<a href="https://newsroom.equinix.com/2026-02-11-Equinix-Provides-Robust-2026-Outlook" target="_blank">Equinix Q4 2025 Earnings (Feb 2026)</a><br>
+<a href="https://www.datacenterdynamics.com/en/news/q3-2025-colo-results-equinix-digital-realty-american-tower-and-iron-mountain/" target="_blank">DCD Q3 2025 Colo Results (Nov 2025)</a><br>
+<a href="https://seekingalpha.com/article/4852707-ditch-digital-realty-for-equinix" target="_blank">Seeking Alpha EQIX/DLR Analysis (Dec 2025)</a><br>
+<a href="https://www.cnbc.com/2025/12/19/data-center-deals-hit-record-amid-ai-funding-concerns-grip-investors.html" target="_blank">CNBC Data Center Deals Record (Dec 2025)</a><br>
+<a href="https://www.kkr.com/insights/ai-infrastructure" target="_blank">KKR AI Infrastructure Report (2025)</a><br>
+<a href="https://www.barrons.com/livecoverage/nvidia-earnings-stock-price-jensen-huang/card/nvidia-s-multi-million-dollar-ai-servers-are-getting-more-expensive-fQAv8OTMJhJU0Ql8VzWZ" target="_blank">Barron's NVIDIA Server Pricing (Q4 2025)</a><br>
+<a href="https://www.asiahouse.org/2025/09/30/danantara-indonesia-the-rise-of-a-sovereign-wealth-powerhouse/" target="_blank">Asia House — Danantara Indonesia (Sep 2025)</a><br>
+<a href="https://globalswf.com" target="_blank">Global SWF Annual Report & Fund Profiles (2025)</a><br>
+<a href="https://www.delloro.com/news/hyperscaler-ai-deployments-lift-data-center-capex-to-record-highs-in-2q-2025/" target="_blank">Dell'Oro Group DC Capex Report (Sep 2025)</a><br>
+</div>
+</div>
+<div style="margin-top:20px;font-size:10px;color:var(--text-3)">© 2026 ALTi Global. All information is proprietary. Market data sourced Q4 2025 – Q1 2026. Financial projections from ALTi Global three-statement model.</div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function scrollTo_s(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-link');
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});navLinks.forEach(l=>{l.classList.remove('active');if(l.getAttribute('onclick')?.includes(cur))l.classList.add('active')})});
+function switchTab(t){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));const tabs=document.querySelectorAll('.tab-btn');const map={swf:0,pe:1,apac:2};tabs[map[t]||0].classList.add('active');document.getElementById('tab-'+t).classList.add('active')}
+
+// ═══ BILINGUAL SUPPORT ═══
+let currentLang = 'en';
+const enCache = {};
+
+const pl = {
+  // Hero
+  'Sovereign-scale, purpose-built AI GPU data center infrastructure across Central & Eastern Europe.': 'Suwerenna, dedykowana infrastruktura centrów danych AI GPU w Europie Środkowo-Wschodniej.',
+  'EXECUTIVE SUMMARY': 'PODSUMOWANIE DLA INWESTORÓW',
+  'Confidential — March 2026': 'Poufne — Marzec 2026',
+  'Phase 1 + Phase 2': 'Faza 1 + Faza 2',
+  'Vera Rubin GPUs': 'GPU Vera Rubin',
+  'NVL144 Racks': 'Szafy NVL144',
+  'Revenue at Scale': 'Przychód w skali',
+  'CEE Pipeline': 'Pipeline CEE',
+  'ALT Infrastructure SA, Zurich · AGC Poland': 'ALT Infrastructure SA, Zurych · AGC Polska',
+
+  // Nav
+  'Thesis': 'Teza',
+  'Market': 'Rynek',
+  'The Asset': 'Aktywo',
+  'Site & CEE': 'Lokalizacja',
+  'Power': 'Energia',
+  'Revenue': 'Przychody',
+  'Structure': 'Struktura',
+  'Financial': 'Finanse',
+  'Team': 'Zespół',
+  'Risk': 'Ryzyko',
+  'Roadmap': 'Harmonogram',
+  'Investors': 'Inwestorzy',
+  'Data Room': 'Data Room',
+
+  // Section headers
+  '01 — Investment Thesis': '01 — Teza inwestycyjna',
+  'The Opportunity': 'Szansa inwestycyjna',
+  '02 — Market Context': '02 — Kontekst rynkowy',
+  'Demand Drivers & Structural Advantage': 'Czynniki popytu i przewaga strukturalna',
+  '03 — The Asset': '03 — Aktywo',
+  '04 — Site & Expansion': '04 — Lokalizacja i ekspansja',
+  'CEE Strategic Ranking — 5 GW Pipeline': 'Ranking strategiczny CEE — Pipeline 5 GW',
+  '05 — Power & Energy': '05 — Energia i zasilanie',
+  '06 — Business Model': '06 — Model biznesowy',
+  'Revenue Projections — From Financial Model': 'Projekcje przychodów — z modelu finansowego',
+  '07 — Corporate Structure': '07 — Struktura korporacyjna',
+  'Governance & Vertical Integration': 'Zarządzanie i integracja pionowa',
+  '08 — Financial Overview': '08 — Przegląd finansowy',
+  'Capital Structure, Returns & Valuation': 'Struktura kapitału, zwroty i wycena',
+  '09 — Team & Partnerships': '09 — Zespół i partnerstwa',
+  'Execution Capability': 'Zdolność realizacji',
+  '10 — Risk Factors': '10 — Czynniki ryzyka',
+  'Transparent Disclosure & Mitigants': 'Transparentne ujawnienia i środki zaradcze',
+  '11 — Execution Roadmap': '11 — Harmonogram realizacji',
+  'Milestone-Driven Deployment': 'Wdrożenie oparte na kamieniach milowych',
+  '12 — AI Infrastructure Capital': '12 — Kapitał infrastruktury AI',
+  'SWFs & Asset Managers': 'Fundusze suwerenne i zarządzający aktywami',
+  '13 — Data Room': '13 — Data Room',
+  'Data Room Contents': 'Zawartość Data Room',
+
+  // Sub-section titles
+  'Compute Supply-Demand Gap': 'Luka podaży i popytu na moc obliczeniową',
+  'European Capacity Deficit': 'Deficyt mocy w Europie',
+  'The Retrofit Wall — ALTi Global\'s Core Insight': 'Bariera modernizacji — kluczowy insight ALTi Global',
+  'Vera Rubin NVL144 — Generational Leap': 'Vera Rubin NVL144 — skok generacyjny',
+  'Phase 1 Facility — Stargard, Poland (140 MW)': 'Obiekt Fazy 1 — Stargard, Polska (140 MW)',
+  'CAPEX Breakdown — $538.4M Validated': 'Rozkład CAPEX — $538,4M zwalidowany',
+  'Construction Timeline — Phase 1 (140 MW)': 'Harmonogram budowy — Faza 1 (140 MW)',
+  'Construction Timeline — Phase 2 (3 × 140 MW)': 'Harmonogram budowy — Faza 2 (3 × 140 MW)',
+  'Customer Pipeline — Four Target Segments': 'Pipeline klientów — cztery segmenty docelowe',
+  'Vertical Integration — 4 Strategic Acquisitions': 'Integracja pionowa — 4 przejęcia strategiczne',
+  'Board & Leadership': 'Zarząd i kierownictwo',
+  'Phase 1 Investment Returns — From Financial Model': 'Zwroty z inwestycji Fazy 1 — z modelu finansowego',
+  'ALTi Global — Implied Valuation Range': 'ALTi Global — implikowany zakres wyceny',
+  'Comparable Transaction Analysis — 10-Company Weighted': 'Analiza transakcji porównywalnych — 10 spółek, ważona',
+  'Sovereign Wealth Funds': 'Fundusze suwerenne',
+  'Asset Managers & PE': 'Zarządzający aktywami i PE',
+  'Intelligence Dashboards': 'Panele analityczne',
+
+  // Card labels & values
+  'Phase 1': 'Faza 1',
+  'Phase 2 (3× builds)': 'Faza 2 (3× budowy)',
+  'National Grid': 'Sieć krajowa',
+  'Expansion': 'Rozbudowa',
+  'Confirmed': 'Potwierdzone',
+  'Pre-Construction': 'Przed budową',
+  'Facility Build': 'Budowa obiektu',
+  'Internal Fit-Out': 'Wyposażenie wewnętrzne',
+  'Phase 2 Groundbreak': 'Rozpoczęcie Fazy 2',
+  'Parallel Build': 'Budowa równoległa',
+  'Phase 2 Go-Live': 'Uruchomienie Fazy 2',
+  'Foundation': 'Fundamenty',
+  'Anchor Capital': 'Kapitał zakotwiczający',
+  'Go-Live + Phase 2 Start': 'Uruchomienie + start Fazy 2',
+  'Through May 2026': 'Do maja 2026',
+  'May–August 2026': 'Maj–sierpień 2026',
+  'Q1–Q2 2027': 'Q1–Q2 2027',
+
+  // Customer cards
+  'U.S. Hyperscalers': 'Hiperskalarzy z USA',
+  'Wholesale GPU Capacity': 'Hurtowa moc GPU',
+  'AI Scale-Ups': 'AI Scale-Upy',
+  'Dedicated Training Clusters': 'Dedykowane klastry treningowe',
+  'European Multinationals': 'Europejskie korporacje',
+  'Sovereign AI & Compliance': 'Suwerenne AI i compliance',
+  'Middle Eastern Sovereigns': 'Fundusze bliskowschodnie',
+  'Strategic Backup & Resilience': 'Strategiczny backup i odporność',
+
+  // Table headers
+  'Specification': 'Specyfikacja',
+  'Detail': 'Szczegóły',
+  'Work Package': 'Pakiet prac',
+  'Cost (USD)': 'Koszt (USD)',
+  'Stage': 'Etap',
+  'Timeline': 'Harmonogram',
+  'Activities': 'Działania',
+  'Tier': 'Poziom',
+  'Country': 'Kraj',
+  'Capacity': 'Moc',
+  'Status': 'Status',
+  'Assessment': 'Ocena',
+  'Total Pipeline': 'Łączny pipeline',
+  'Scenario': 'Scenariusz',
+  'Capital Layer': 'Warstwa kapitału',
+  'Amount': 'Kwota',
+  'Company': 'Spółka',
+  'LTM Rev': 'Przychód LTM',
+  'Enterprise Value': 'Wartość przedsiębiorstwa',
+  'EV/Rev': 'EV/Przychód',
+  'EV/EBITDA': 'EV/EBITDA',
+  'Weight': 'Waga',
+  'Weighted Average': 'Średnia ważona',
+  'Partner': 'Partner',
+  'Role': 'Rola',
+  'Risk': 'Ryzyko',
+  'Description': 'Opis',
+  'Mitigants': 'Środki zaradcze',
+  'Acquisition': 'Przejęcie',
+  'Strategic Rationale': 'Uzasadnienie strategiczne',
+  'Phase': 'Faza',
+
+  // Metric labels
+  'GPUs': 'GPU',
+  'Year 1 Revenue': 'Przychód Rok 1',
+  'Yr 3 Revenue': 'Przychód Rok 3',
+  'Investment': 'Inwestycja',
+  'Additional Power': 'Dodatkowa moc',
+  'Additional GPUs': 'Dodatkowe GPU',
+  'Additional Racks': 'Dodatkowe szafy',
+  'Yr 4 Revenue (P2)': 'Przychód Rok 4 (F2)',
+  'Investment (P2)': 'Inwestycja (F2)',
+  'Each Build': 'Każda budowa',
+  'Total Power': 'Łączna moc',
+  'Total GPUs': 'Łącznie GPU',
+  'Total Racks': 'Łącznie szafy',
+  'Steady-State Rev': 'Przychód stabilny',
+  'Steady EBITDA': 'Stabilna EBITDA',
+  'Total Investment': 'Łączna inwestycja',
+  'IRR (P1 Model)': 'IRR (model F1)',
+  'Equity MOIC (P1)': 'MOIC na kapitale (F1)',
+  'Unlevered IRR': 'IRR nielewarowany',
+  'Levered IRR': 'IRR lewarowany',
+  'MOIC (Total)': 'MOIC (łącznie)',
+  'MOIC (Equity)': 'MOIC (kapitał)',
+  'P1 DCF EV': 'F1 DCF EV',
+  'P1 Exit (10× EBITDA)': 'F1 wyjście (10× EBITDA)',
+  'Methodology': 'Metodologia',
+  'Traditional DC REIT range': 'Zakres tradycyjnych DC REIT',
+  'Wtd. Avg. Comps': 'Śr. ważona porównywalnych',
+  'CoreWeave / Aligned tier': 'Poziom CoreWeave / Aligned',
+
+  // Construction cards
+  'Site acquisition, permitting, GPU ordering, power agreements finalized': 'Pozyskanie terenu, pozwolenia, zamówienie GPU, finalizacja umów energetycznych',
+  'Shell construction, HVAC, power infrastructure, BESS integration': 'Budowa powłoki, HVAC, infrastruktura energetyczna, integracja BESS',
+  'NVL144 assembly, NVIDIA Mission Control config, burn-in, go-live': 'Montaż NVL144, konfiguracja NVIDIA Mission Control, testy, uruchomienie',
+
+  // Data room cards
+  'Corporate & Legal': 'Korporacyjne i prawne',
+  'Technical': 'Techniczne',
+  'Site & Energy': 'Lokalizacja i energia',
+  'Commercial': 'Komercyjne',
+
+  // Footer
+  'For inquiries, please contact the Capital Strategy team.': 'W sprawie zapytań prosimy o kontakt z zespołem Strategii Kapitałowej.',
+  'Sources & References': 'Źródła i odniesienia',
+  'THIS DOCUMENT CONTAINS CONFIDENTIAL AND PROPRIETARY INFORMATION · DISTRIBUTION WITHOUT PRIOR WRITTEN CONSENT IS STRICTLY PROHIBITED': 'NINIEJSZY DOKUMENT ZAWIERA INFORMACJE POUFNE I ZASTRZEŻONE · DYSTRYBUCJA BEZ UPRZEDNIEJ PISEMNEJ ZGODY JEST SUROWO ZABRONIONA',
+
+  // Risk table
+  'Construction': 'Budowa',
+  'Market': 'Rynek',
+  'Technology': 'Technologia',
+  'Regulatory': 'Regulacyjne',
+  'Financing': 'Finansowanie',
+
+  // Phase labels
+  'Phase 1 — 140 MW, Stargard': 'Faza 1 — 140 MW, Stargard',
+  'Phase 2 — 3 × 140 MW Expansion (Q2 2027 Start)': 'Faza 2 — 3 × 140 MW Ekspansja (start Q2 2027)',
+  'Combined Platform — Phase 1 + Phase 2': 'Platforma łącznie — Faza 1 + Faza 2',
+  'How Phase 2 Works': 'Jak działa Faza 2',
+
+  // Supplementary
+  'Supplementary': 'Materiały uzupełniające',
+};
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent === lang.toUpperCase()) b.classList.add('active'); });
+
+  if (lang === 'pl') {
+    // Walk all text nodes and translate
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      const text = node.textContent.trim();
+      if (text && pl[text]) {
+        if (!node._enOriginal) node._enOriginal = node.textContent;
+        node.textContent = node.textContent.replace(text, pl[text]);
+      }
+    });
+    // Also handle elements with innerHTML for complex matches
+    document.querySelectorAll('.s-num, .s-title, .ss-title, .card-label, .card-value, .metric-lbl, .callout-title, .inv-type, .nav-link, .hero .sub, .hero .meta, .conf, .tab-btn').forEach(el => {
+      const t = el.textContent.trim();
+      if (pl[t]) {
+        if (!el._enOriginal) el._enOriginal = el.textContent;
+        el.textContent = pl[t];
+      }
+    });
+    // Table headers
+    document.querySelectorAll('th').forEach(th => {
+      const t = th.textContent.trim();
+      if (pl[t]) {
+        if (!th._enOriginal) th._enOriginal = th.textContent;
+        th.textContent = pl[t];
+      }
+    });
+  } else {
+    // Restore English
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => { if (node._enOriginal) { node.textContent = node._enOriginal; delete node._enOriginal; } });
+    document.querySelectorAll('.s-num, .s-title, .ss-title, .card-label, .card-value, .metric-lbl, .callout-title, .inv-type, .nav-link, .hero .sub, .hero .meta, .conf, .tab-btn, th').forEach(el => {
+      if (el._enOriginal) { el.textContent = el._enOriginal; delete el._enOriginal; }
+    });
+  }
+  currentLang = lang;
+}
+
+</script>
+</body>
+</html>
